@@ -5,8 +5,8 @@ Version: 0.1
 Date: 2018-08-10
 Author: Alexey Seleznev
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
-Description: Package allow work with managment API, Reporting API, 
-    Logs API and compatible with Google Analytics Core Reporting API (v3) Yandex Metrika.
+Description: Package allow work with managment API, Reporting API, Logs API
+     and compatible with Google Analytics Core Reporting API (v3) Yandex Metrika.
 License: GPL-2
 Imports: httr
 URL: http://selesnow.github.io/
