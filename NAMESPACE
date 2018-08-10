@@ -1,0 +1,2 @@
+exportPattern("^rym")
+importFrom(httr, GET, content, stop_for_status)
