@@ -4,9 +4,9 @@
 Get raw data from yandex metrika.
 }
 \description{
-Logs API allows you to receive non-aggregated data collected by Yandex.Metric. 
-This API is intended for service users who want to independently process 
-statistical data and use them to solve unique analytical problems.
+	Logs API allows you to receive non-aggregated data collected by Yandex.Metric. 
+	This API is intended for service users who want to independently process 
+	statistical data and use them to solve unique analytical problems.
 }
 \usage{
 rym_get_logs(counter = NULL, date.from = Sys.Date() - 10, 
