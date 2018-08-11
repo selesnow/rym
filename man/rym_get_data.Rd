@@ -73,7 +73,7 @@ Reporting API docs - https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpag
 Alexey Seleznev
 }
 \seealso{
-For load statics you also can use \code{\link{rym:rym_get_ga}{rym_get_ga()}} and \code{\link{rym:rym_get_logs}{rym_get_logs()}
+For load statics you also can use \code{\link{rym:rym_get_ga}{rym_get_ga()}} and \code{\link{rym:rym_get_logs}{rym_get_logs()}}
 }
 \examples{
 \dontrun{
