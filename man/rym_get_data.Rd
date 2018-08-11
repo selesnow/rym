@@ -74,6 +74,7 @@ Alexey Seleznev
 }
 \seealso{
 For load statics you also can use \code{\link{rym:rym_get_ga}{rym_get_ga()}} and \code{\link{rym:rym_get_logs}{rym_get_logs()}}
+\code{\link[rym:rym_get_ga]{rym_get_ga()}} 
 }
 \examples{
 \dontrun{
