@@ -73,8 +73,9 @@ Data frame with dimension and metrics.
 Alexey Seleznev
 }
 \seealso{
-For load statics you also can use \code{\link[rym:rym_get_ga]{rym_get_ga()}} and \code{\link[rym:rym_get_logs]{rym_get_logs()}
+For load statics you also can use \code{\link[rym:rym_get_ga]{rym_get_ga()}} and \code{\link[rym:rym_get_logs]{rym_get_logs()}}
 }
+	
 \examples{
 \dontrun{
 test_data <- rym_get_data(counters = 26841129,
