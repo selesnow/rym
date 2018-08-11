@@ -67,14 +67,14 @@ This API have some limits.
 Data frame with dimension and metrics.
 }
 \references{
-Reporting API docs - https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage/
+Reporting API docs - \href{https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage/}{Reporting API docs}
 }
 \author{
 Alexey Seleznev
 }
 \seealso{
-For load statics you also can use \code{\link{rym:rym_get_ga}{rym_get_ga()}} and \code{\link{rym:rym_get_logs}{rym_get_logs()}}
-\code{\link[rym:rym_get_ga]{rym_get_ga()}} 
+For load statics you also can use \link{rym:rym_get_ga}{rym_get_ga()} and \link{rym:rym_get_logs}{rym_get_logs()}
+\link[rym:rym_get_ga]{rym_get_ga()}
 }
 \examples{
 \dontrun{
