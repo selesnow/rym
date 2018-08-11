@@ -73,10 +73,7 @@ Data frame with dimension and metrics.
 Alexey Seleznev
 }
 \seealso{
-For load statics you also can use \link{rym_get_ga}{rym_get_ga()} and \link{rym:rym_get_logs}{rym_get_logs()}
-\link[rym:rym_get_ga]{rym_get_ga()}
-	
-\code{\link[rym:rym_get_ga]{dtplyr::tbl_dt()}}
+For load statics you also can use \code{\link[rym:rym_get_ga]{rym_get_ga()}} and \code{\link[rym:rym_get_logs]{rym_get_logs()}
 }
 \examples{
 \dontrun{
