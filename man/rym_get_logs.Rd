@@ -54,7 +54,7 @@ Alexey Seleznev
 For load statics you also can use \code{\link[rym:rym_get_data]{rym_get_data()}} and \code{\link[rym:rym_get_ga]{rym_get_ga()}}
 }
 \examples{
-\donotrun{
+\dontrun{
 rawmetrikdata <- rym_get_logs(counter = "00000000",
                               date.from = "2016-12-01",
                               date.to = "2016-12-20",
