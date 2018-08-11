@@ -50,14 +50,15 @@ Limits:
 Data frame with fields.
 }
 \references{
-Official docs - https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/
+\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{Official ompatible with the Google Analytics Core Reporting API (v3) docs}
+
 }
 \author{
 Alexey Seleznev
 }
 
 \seealso{
-For load statics you also can use \code{\link{rym:rym_get_data}{rym_get_data()}} and \code{\link{rym:rym_get_logs}{rym_get_logs()}}
+For load statics you also can use \code{\link[rym:rym_get_data]{rym_get_data()}} and \code{\link[rym:rym_get_logs]{rym_get_logs()}}
 }
 \examples{
 \dontrun{
