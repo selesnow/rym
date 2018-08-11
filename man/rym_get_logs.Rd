@@ -39,15 +39,18 @@ Log source, one of "hits" or "visits"
 Data frame with values and fields
 }
 \references{
-Visits fields - https://tech.yandex.ru/metrika/doc/api2/logs/fields/visits-docpage/
-Hits fields - https://tech.yandex.ru/metrika/doc/api2/logs/fields/hits-docpage/
-Logs API docs - https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/
+\href{https://tech.yandex.ru/metrika/doc/api2/logs/fields/visits-docpage/}{Visits fields}
+	
+\href{https://tech.yandex.ru/metrika/doc/api2/logs/fields/hits-docpage/}{Hits fields}
+	
+\href{https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/}{Logs API docs}
+	
 }
 \author{
 Alexey Seleznev
 }
 \seealso{
-For load statics you also can use \code{\link{rym:rym_get_data}{rym_get_data()}} and \code{\link{rym:rym_get_ga}{rym_get_ga()}}
+For load statics you also can use \code{\link[rym:rym_get_data]{rym_get_data()}} and \code{\link[rym:rym_get_ga]{rym_get_ga()}}
 }
 \examples{
 ##---- Should be DIRECTLY executable !! ----
