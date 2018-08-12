@@ -24,10 +24,10 @@ End date in format YYYY-MM-DD
 Your yandex metrica counter
 }
   \item{dimensions}{
-List of dimensions fields, for example "ga:browser,ga:city"
+List of dimensions fields, for example "ga:browser,ga:city", see \href{https://tech.yandex.ru/metrika/doc/api2/ga/ga/terms-docpage/}{dictionary of available dimension}
 }
   \item{metrics}{
-List of metrics fields, for example "ga:users,ga:sessions"
+List of metrics fields, for example "ga:users,ga:sessions", see \href{https://tech.yandex.ru/metrika/doc/api2/ga/ga/terms-docpage/}{dictionary of available metrics}
 }
   \item{filters}{
 List of filtrind dimensions and metrics.
