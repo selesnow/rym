@@ -8,10 +8,13 @@ The Reporting API allows you to obtain information about site visits statistics 
 }
 \usage{
 rym_get_data(direct.client.logins = NULL, counters, 
-metrics = "ym:s:visits,ym:s:pageviews,ym:s:users", 
-dimensions = NULL, filters = NULL, sort = NULL, date.from = "8daysAgo", 
-date.to = "yesterday", accuracy = "full", include_undefined = TRUE, lang = "ru", 
-timezone = NULL, pretty = FALSE, login = NULL, token.path = getwd())
+  metrics = "ym:s:visits,ym:s:pageviews,ym:s:users", 
+  dimensions = NULL, filters = NULL, 
+  sort = NULL, date.from = "8daysAgo", 
+  date.to = "yesterday", accuracy = "full", 
+  include_undefined = TRUE, lang = "ru", 
+  timezone = NULL, pretty = FALSE, 
+  login = NULL, token.path = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

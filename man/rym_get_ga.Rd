@@ -10,7 +10,12 @@ Allows you to perform the following operations:
 3. Use the usual query parameters when collecting statistics, if you previously worked with the Google Analytics Core Reporting API (v3).
 }
 \usage{
-rym_get_ga(start.date = "10daysAgo", end.date = "today", counter = NULL, dimensions = "ga:date,ga:sourceMedium", metrics = "ga:sessions,ga:bounces,ga:users", filters = NULL, sort = NULL, sampling.level = "HIGHER_PRECISION", login = NULL, token.path = getwd())
+rym_get_ga(start.date = "10daysAgo", end.date = "today", 
+  counter = NULL, dimensions = "ga:date,ga:sourceMedium", 
+  metrics = "ga:sessions,ga:bounces,ga:users", 
+  filters = NULL, sort = NULL, 
+  sampling.level = "HIGHER_PRECISION", 
+  login = NULL, token.path = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

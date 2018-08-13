@@ -10,10 +10,10 @@ Get raw data from yandex metrika.
 }
 \usage{
 rym_get_logs(counter = NULL, date.from = Sys.Date() - 10, 
-date.to = Sys.Date() - 1, fields = "ym:s:date,ym:s:counterID,
-ym:s:dateTime,ym:s:isNewUser,ym:s:startURL,
-ym:s:visitDuration,ym:s:ipAddress,ym:s:referer", 
-source = "visits", login = NULL, token.path = getwd())
+  date.to = Sys.Date() - 1, fields = "ym:s:date,ym:s:counterID,
+  ym:s:dateTime,ym:s:isNewUser,ym:s:startURL,
+  ym:s:visitDuration,ym:s:ipAddress,ym:s:referer", 
+  source = "visits", login = NULL, token.path = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
