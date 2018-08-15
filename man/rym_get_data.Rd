@@ -37,10 +37,10 @@ A list of filtring data.
 A list of metrics and dimension for sorting result data, for desc sorting use -.
 }
   \item{date.from}{
-Start date in YYYY-MM-DD.
+Start date in YYYY-MM-DD. Also available relative values today, yesterday, days Ago.
 }
   \item{date.to}{
-End date in YYYY-MM-DD.
+End date in YYYY-MM-DD. Also available relative values today, yesterday, days Ago.
 }
   \item{accuracy}{
 Sampling level, one of low, medium, high or full. Or numeric from 0 to 1, where 1 - no sampling.
