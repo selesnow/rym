@@ -10,14 +10,14 @@ function (start.date = "10daysAgo",
                         login = NULL,
                         token.path = getwd()){
   
-  #Проверка заполнения обязательных аргументов
+  #check args
   if(is.null(counter)){
-    stop("Аргументы counter являются обязательным!")
+    stop("Argument counter is require!")
   }
   
   token <- rym_auth(login = login, token.path = token.path)$access_token
   
-  #Проверяем функцию StringAsFactor
+  #check opts StringAsFactor
   if(getOption("stringsAsFactors") == TRUE){
     string_as_factor <- "change"
     options(stringsAsFactors = F)
@@ -25,14 +25,14 @@ function (start.date = "10daysAgo",
     string_as_factor <- "no change"
   }
   
-  #Создаём рещультирующий дата фрейм
+  #create df
   result <- data.frame(stringsAsFactors = F)
   
-  #Убираем пробелы из метрик и группировок
-  metrics <- gsub(" ", "",metrics)
+  #remove spaces
+  metrics <- gsub("[\\s\\n\\t]", "", metrics, perl = TRUE)
   
-  #Переменные для постраничной выборки
-  max_results <- 500
+  #variables for offse
+  max_results <- 4000
   start_index <- 1
   last_query <- FALSE
   
@@ -40,10 +40,10 @@ function (start.date = "10daysAgo",
   
   while(last_query == FALSE){
     
-    #Формируем GET Запрос к API метрики
-    #Соединяем GET параметры
+    #GET
+    #params
     query <- paste0("start-date=",start.date,"&end-date=",end.date,"&metrics=",metrics,"&ids=",counter,"&max-results=",max_results,"&start-index=",start_index,"&oauth_token=",token)
-    #По очереди добавляем не обязательные параметры
+    #add params to query
     if(!is.null(dimensions)) {
       dimensions <- gsub(" ", "",dimensions)
       query <- paste0(query,"&dimensions=",dimensions)}
@@ -51,44 +51,43 @@ function (start.date = "10daysAgo",
     if(!is.null(sort)) query <- paste0(query,"&sort=",sort)
     if(!is.null(sampling.level)) query <- paste0(query,"&samplingLevel=",sampling.level)
     
-    #Заменяем спец символы параметров на URL кодировку
+    #chnge spec character
     query <- gsub(":","%3a",query)
-    #Соединяем URL и GET параметры
+    #url+params
     query <- paste0("https://api-metrika.yandex.ru/analytics/v3/data/ga?", query)
-    #Отправляем запрос на сервер
+    #send query
     answer <- GET(query)
-    #Парсим результат
+    #parsing result
     rawData <- content(answer, "parsed", "application/json")
     
-    #Проверка ответа на ошибки
+    #check result
     if(!is.null(rawData$error)){
       stop(paste0(rawData$error$errors[[1]]$reason," - ",rawData$error$errors[[1]]$message, ", location - ", rawData$error$errors[[1]]$location))
     }
     
-    #Парсинг результата
-    #Получаем вектор с названием столбцов
+    #get field names
     column_names <- unlist(lapply(rawData$columnHeader, function(x) return(x$name)))
     
-    #Парсим строки
+    #get rows
     rows <- lapply(rawData$rows, function(x) return(x))
     for(rows_i in 1:length(rows)){
       result <- rbind(result, unlist(rows[[rows_i]]))
     }
-    #Выводим точку
+    #point
     packageStartupMessage(".", appendLF = F)
-    #Переходим на следующую страницу.
+    #next page
     start_index <- start_index + max_results
     
-    #Проверяем последняя ли это страница
+    #last page or not
     if(rawData$totalResults < start_index){
       last_query <- TRUE
     }
   }
   
-  #Задаём имена столбцов
+  #col names
   colnames(result) <- column_names
   
-  #Преобразуем тип данных в столбцах
+  #data types change
   for(tape_i in 1:length(rawData$columnHeaders)){
     
     if(rawData$columnHeaders[[tape_i]]$columnType == "METRIC"){
@@ -96,24 +95,24 @@ function (start.date = "10daysAgo",
     }
   }
   
-  #Возврашаем опцию преобзования текстовых полей в фактор если меняли её на старте работы
+  #opts 
   if(string_as_factor == "change"){
     options(stringsAsFactors = T)
   }
   
-  #Выводим сообщение о том что данные загружены
+  #message 
   packageStartupMessage("Done", appendLF = T)
   
-  #Выводим общую информацию
+  #total info
   if(rawData$containsSampledData == TRUE){
-    packageStartupMessage("При сборе данных было использовано семплирование.", appendLF = T)
-    packageStartupMessage(paste0("размер выборки на которой составлен отчёт: ", rawData$sampleSize), appendLF = T)
-    packageStartupMessage(paste0("данная выборка составляет : ",  as.integer(rawData$sampleSize) / as.integer(rawData$sampleSpace) * 100, "% от общего количества визитов"), appendLF = T)
-    packageStartupMessage(paste0("Общее количество полученных результатов: ", rawData$totalResults), appendLF = T)
+    packageStartupMessage("You get data with sampling.", appendLF = T)
+    packageStartupMessage(paste0("sample size on which the report is compiled: ", rawData$sampleSize), appendLF = T)
+    packageStartupMessage(paste0("reportbuild on ",  as.integer(rawData$sampleSize) / as.integer(rawData$sampleSpace) * 100, "% of all data"), appendLF = T)
+    packageStartupMessage(paste0("Total results: ", rawData$totalResults), appendLF = T)
   } else {
-    packageStartupMessage("При сборе данных не было использовано семплирование.", appendLF = T)
-    packageStartupMessage(paste0("Общее количество полученных результатов: ", rawData$totalResults), appendLF = T)
+    packageStartupMessage("Sampling was not used to collect data.", appendLF = T)
+    packageStartupMessage(paste0("Total results: ", rawData$totalResults), appendLF = T)
   }
-  #Возвращем результат
+  #return result
   return(result)
 }

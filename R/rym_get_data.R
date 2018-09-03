@@ -70,9 +70,8 @@ function(direct.client.logins = NULL,
                              offset               = offset),
                 add_headers(Authorization = paste0("OAuth ", ym_token)))
 
-  # парсинг результата
-
-  data <- suppressMessages(content(answer, as = "parsed", "text/csv"))
+  # result pars
+  data <- suppressMessages(content(answer, as = "parsed", "text/csv")[-1, ])
 
   offset <- offset + limit
   out_rows <- nrow(data)
@@ -83,7 +82,6 @@ function(direct.client.logins = NULL,
   }
 
   my_data <- do.call("rbind", result)
-  my_data <- my_data[my_data[, 1] != "Итого и средние",]
 
   return(my_data)
 }

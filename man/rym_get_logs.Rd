@@ -9,11 +9,12 @@ Get raw data from yandex metrika.
 	statistical data and use them to solve unique analytical problems.
 }
 \usage{
-rym_get_logs(counter = NULL, date.from = Sys.Date() - 10, 
-  date.to = Sys.Date() - 1, fields = "ym:s:date,ym:s:counterID,
-  ym:s:dateTime,ym:s:isNewUser,ym:s:startURL,
-  ym:s:visitDuration,ym:s:ipAddress,ym:s:referer", 
-  source = "visits", login = NULL, token.path = getwd())
+rym_get_logs(counter = NULL, date.from = Sys.Date() - 10, date.to =
+    Sys.Date() - 1, fields =
+    "ym:s:date,ym:s:counterID,ym:s:dateTime,
+	ym:s:isNewUser,ym:s:startURL,ym:s:visitDuration,
+	ym:s:ipAddress,ym:s:referer",
+    source = "visits", login = NULL, token.path = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -55,14 +56,16 @@ For load statics you also can use \code{\link[rym:rym_get_data]{rym_get_data()}}
 }
 \examples{
 \dontrun{
+# where "00000000" is your counter id
 rawmetrikdata <- rym_get_logs(counter = "00000000",
                               date.from = "2016-12-01",
                               date.to = "2016-12-20",
-                              fields = "ym:s:visitID,ym:s:date,ym:s:bounce,ym:s:clientID,ym:s:networkType",
-                              source = "visits")
+                              fields = "ym:s:visitID,
+							            ym:s:date,
+										ym:s:bounce,
+										ym:s:clientID,
+										ym:s:networkType",
+                              source = "visits",
+							  token.path = tempdir())
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

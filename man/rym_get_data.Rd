@@ -37,10 +37,10 @@ A list of filtring data.
 A list of metrics and dimension for sorting result data, for desc sorting use -.
 }
   \item{date.from}{
-Start date in YYYY-MM-DD. Also available relative values today, yesterday, days Ago.
+Start date in YYYY-MM-DD.
 }
   \item{date.to}{
-End date in YYYY-MM-DD. Also available relative values today, yesterday, days Ago.
+End date in YYYY-MM-DD.
 }
   \item{accuracy}{
 Sampling level, one of low, medium, high or full. Or numeric from 0 to 1, where 1 - no sampling.
@@ -85,10 +85,7 @@ test_data <- rym_get_data(counters = 26841129,
                           dimensions = "ym:s:date,
                                         ym:s:lastsignTrafficSource", 
 						  login = "my_login", 
-						  sort = "ym:s:date")
+						  sort = "ym:s:date",
+						  token.path = tempdir())
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line

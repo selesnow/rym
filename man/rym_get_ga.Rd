@@ -72,10 +72,8 @@ data <- rym_get_ga(start.date = "2017-08-01",
                    counter = "ga:26841129",
                    metrics = "ga:sessions,ga:bounces,ga:users",
                    dimensions = "ga:date,ga:sourceMedium", 
-                   login      = "my_login")
+                   login      = "my_login",
+				   token.path = tempdir())
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }% use one of  RShowDoc("KEYWORDS")
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+

@@ -1,15 +1,21 @@
 Package: rym
 Type: Package
-Title: R Intarface to Yandex Metrika API
-Version: 0.1
-Date: 2018-08-10
+Title: R Interface to Yandex Metrika API
+Version: 0.2.0
+Date: 2018-09-03
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
-Description: Package allow work with managment API, Reporting API, Logs API 
-    and compatible with Google Analytics Core Reporting API (v3) Yandex Metrika.
-	For more information see 
-	official documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage/>.
+Description: Allows work with 'Management API' for load counters, filters
+    or goals list from Yandex Metrika, 'Reporting API' allows you to get 
+	information about the statistics of site visits and other data without
+	using the web interface, 'Logs API' allows to receive non-aggregated data and 
+    'Compatible with Google Analytics Core Reporting API v3' allows 
+	receive information about site traffic and other data using field names 
+	from Google Analytics Core API.	For more information see official 
+	documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage/>.
+Depends: R (>= 3.5.0)
+BugReports: https://github.com/selesnow/rym/issues
 License: GPL-2
-Imports: httr, stringr
+Imports: httr, stringr, utils
 URL: http://selesnow.github.io/
-
+Encoding: UTF-8

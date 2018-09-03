@@ -2,7 +2,9 @@ rym_get_logs <-
 function(counter = NULL, 
                          date.from = Sys.Date() - 10, 
                          date.to = Sys.Date()-1, 
-                         fields = "ym:s:date,ym:s:counterID,ym:s:dateTime,ym:s:isNewUser,ym:s:startURL,ym:s:visitDuration,ym:s:ipAddress,ym:s:referer", 
+                         fields = "ym:s:date,ym:s:counterID,ym:s:dateTime,
+	ym:s:isNewUser,ym:s:startURL,ym:s:visitDuration,
+	ym:s:ipAddress,ym:s:referer", 
                          source = "visits", 
                          login = NULL,
                          token.path = getwd()){
@@ -11,67 +13,66 @@ function(counter = NULL,
     
     token <- rym_auth(login = login, token.path = token.path)$access_token
     
-    #Отправить запрос
+    #send query
     fields <- gsub("[\\s\\n\\t]","",fields,perl = TRUE) 
     logapi <- POST(paste0("https://api-metrika.yandex.ru/management/v1/counter/",counter,"/logrequests?date1=",date.from,"&date2=",date.to,"&fields=",fields,"&source=",source,"&oauth_token=",token))
     queryparam <- content(logapi, "parsed", "application/json")
     
-    #Проверка на ошибки, если запрос вернул ошибку останавливаем работу функции и выводим сообщение
+    #check error
     if(!is.null(queryparam$errors)){
       stop(paste0(queryparam$errors[[1]][[1]]," - ",queryparam$errors[[1]][[2]], ", error code - ", queryparam$code))
     }
     
-    #Сохраняем id запроса и его статус в переменную
+    #variables
     request_id <- queryparam$log_request$request_id
     request_status <- queryparam$log_request$status
     
-    #Запускаем счётчик времени
+    #time counter
     start_time <- Sys.time()
     
-    #Остановка системы на 7 секунд для ожидания обработки запроса
+    #pause
     Sys.sleep(7)
     
-    #Выводим сообщение о том что начат процессинг
+    #start message
     packageStartupMessage("Processing ", appendLF = FALSE)
     
-    #Проверка статуса запроса
+    #check status
     while(request_status != "processed"){
       logapistatus <- GET(paste0("https://api-metrika.yandex.ru/management/v1/counter/",counter,"/logrequest/",request_id,"?oauth_token=",token))
       request_status <- content(logapistatus, "parsed", "application/json")$log_request$status
       
-      #Выводим сообщение с информацией о статусе запроса и времени выполнения запроса
-      #message(paste0("Query status: ", request_status," Query time: ", Sys.time() - start_time))
+      #status
       packageStartupMessage(".", appendLF = FALSE)
       
-      #Получаем к-во частей запроса
+      #get parts number of results
       partsnun <- length(content(logapistatus, "parsed", "application/json")$log_request$parts)
       
-      #Если лог готов забираем его отдельно по частям
+      #get parts of log
       if(request_status == "processed"){
-        #Выводим сообщение о том что процессинг завершен
+        #message
         packageStartupMessage(paste0(" processing time ",round(Sys.time() - start_time,2)," sec"), appendLF = TRUE)
         
-        #Создаём дата фрейм для загрузки данных
+        #create res df
         result <- data.frame()
         
-        #Выводим сообщение о том что начата загрузка данных
+        #message about start loading
         packageStartupMessage("Loading ", appendLF = FALSE)
         start_load_time <- Sys.time()
         for(parts in 0:partsnun-1){
           packageStartupMessage(".", appendLF = FALSE)
-          #Получить данные
+          #get data
           logapidata <- GET(paste0("https://api-metrika.yandex.ru/management/v1/counter/",counter,"/logrequest/",request_id,"/part/",parts,"/download?oauth_token=",token))
           rawdata <- try(content(logapidata,"text","application/json",encoding = "UTF-8"), silent = T)
           df_temp <- try(read.delim(text=rawdata), silent = T)
           result <- rbind(result, df_temp)
         }
-        #Возвращаем итоговый результат
+        #message
         packageStartupMessage(paste0(" done! ", "loading time ",round(Sys.time() - start_load_time,2)," sec"))
         
-        #Удаляем запрос с сервера
+        #remove from server
         req_delite <- POST(paste0("https://api-metrika.yandex.ru/management/v1/counter/",counter,"/logrequest/",request_id,"/clean?oauth_token=",token))
         req_delite <- content(req_delite, "parsed", "application/json")
-        #Выводим общую информацию о работе функции
+        #total info
         packageStartupMessage("Information: ")
         packageStartupMessage(paste0("Request id: ", request_id))
         packageStartupMessage(paste0("Request status: ", req_delite$log_request$status))
@@ -84,22 +85,22 @@ function(counter = NULL,
         return(result)
       }
       
-      #Если появилась ошибка при обработке останавливаем функцию
+      #stop on error
       if(request_status == "processing_failed"){
-        stop("Ошибка при обработке запроса")
+        stop("Error in request processing")
       }
-      
-      #Если отменён
+	  
+      #stop if canceled
       if(request_status == "canceled"){
-        stop("Запрос был отменён")
+        stop("Request canceled")
       }
       
-      #Если отменён
+      #Delete
       if(request_status == "cleaned_by_user"|request_status == "cleaned_automatically_as_too_old"){
-        stop("Запрос был удалён с сервера")
+        stop("Request delete")
       }
       
-      #5 секунд ожидания перед повторной отправкой
+      #5 sec pause before next query
       Sys.sleep(5)
     }
   }
