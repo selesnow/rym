@@ -8,14 +8,13 @@ Actually you don`t need call rym_auth since it will be called when you run any o
 }
 \usage{
 rym_auth(login = NULL, new.user = FALSE, 
-	token.path = getwd(), save.credential = TRUE)
+	token.path = getwd())
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{login}{character, Your Yandex login}
   \item{new.user}{logical, If TRUE you reauth in Yandex Metrika API}
   \item{token.path}{character, Directory for store API credential}
-  \item{save.credential}{logical, If TRUE your credential save in local file login.rymAuth.RData, default TRUE}
 }
 \details{
 All your credential save in directory specified in the argument token.path, after save every time you run any function from rym, rym_auth be load credentials from local file login.rymAuth.RData.
@@ -35,7 +34,6 @@ Alexey Seleznev
 \examples{
 \dontrun{
 library(rym)
-rym_auth(login = "my_login", token.path = tempdir(),
-save.credential = TRUE)
+rym_auth(login = "my_login")
 }
 }

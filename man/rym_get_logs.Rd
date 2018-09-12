@@ -65,7 +65,6 @@ rawmetrikdata <- rym_get_logs(counter = "00000000",
 										ym:s:bounce,
 										ym:s:clientID,
 										ym:s:networkType",
-                              source = "visits",
-							  token.path = tempdir())
+                              source = "visits")
 }
 }

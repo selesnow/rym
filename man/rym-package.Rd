@@ -49,8 +49,7 @@ reporting <- rym_get_data(counters   = counters_ids,
                           metrics    = "ym:s:visits,
 						                ym:s:pageviews,
 						                ym:s:users",
-                          sort       = "-ym:s:date",
-						  token.path = tempdir())
+                          sort       = "-ym:s:date")
 						  
 # get raw data
 raw_data <- rym_get_logs(counter = counters_ids[1],
@@ -61,7 +60,6 @@ raw_data <- rym_get_logs(counter = counters_ids[1],
 										ym:s:bounce,
 										ym:s:clientID,
 										ym:s:networkType",
-                              source = "visits",
-							  token.path = tempdir())
+                              source = "visits")
 }
 }

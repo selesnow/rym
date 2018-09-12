@@ -72,8 +72,7 @@ data <- rym_get_ga(start.date = "2017-08-01",
                    counter = "ga:26841129",
                    metrics = "ga:sessions,ga:bounces,ga:users",
                    dimensions = "ga:date,ga:sourceMedium", 
-                   login      = "my_login",
-				   token.path = tempdir())
+                   login      = "my_login")
 }
 }
 

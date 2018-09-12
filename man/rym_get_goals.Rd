@@ -30,7 +30,6 @@ Alexey Seleznev
 
 \examples{
 \dontrun{
-my_counters <- rym_get_goals(login = "my_login",
-                             token.path = tempdir())
+my_counters <- rym_get_goals(login = "my_login")
 }
 }

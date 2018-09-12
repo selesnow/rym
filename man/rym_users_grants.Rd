@@ -36,7 +36,6 @@ Alexey Seleznev
 \examples{
 \dontrun{
 users <- rym_users_grants(counter    = "your_counter_id",
-                          login      = "your_login",
-                          token.path = tempdir())
+                          login      = "your_login")
 }
 }

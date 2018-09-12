@@ -37,7 +37,6 @@ Alexey Seleznev
 \examples{
 \dontrun{
 segments <- rym_get_segments(counter    = "your_counter_id",
-                             login      = "your_login",
-                             token.path = tempdir())
+                             login      = "your_login")
 }
 }

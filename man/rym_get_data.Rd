@@ -85,7 +85,6 @@ test_data <- rym_get_data(counters = 26841129,
                           dimensions = "ym:s:date,
                                         ym:s:lastsignTrafficSource", 
 						  login = "my_login", 
-						  sort = "ym:s:date",
-						  token.path = tempdir())
+						  sort = "ym:s:date")
 }
 }

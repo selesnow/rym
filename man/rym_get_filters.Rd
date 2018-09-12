@@ -40,7 +40,6 @@ Alexey Seleznev
 \examples{
 \dontrun{
 filters <- rym_get_filters(counter    = "your_counter_id",
-                           login      = "your_login",
-                           token.path = tempdir())
+                           login      = "your_login")
 }
 }
