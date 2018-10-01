@@ -118,6 +118,9 @@ li.nm_li {
 * [Группа в Вконтакте](https://vk.com/data_club)
 * [RDocumentation](https://www.rdocumentation.org/packages/rym/)
 
+# CRAN
+[![Rdoc](http://www.rdocumentation.org/badges/version/rym)](http://www.rdocumentation.org/packages/rym)
+
 # Содержание ReadMe пакета rym
 
 * Краткое описание
