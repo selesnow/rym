@@ -2,7 +2,7 @@ Package: rym
 Type: Package
 Title: R Interface to Yandex Metrika API
 Version: 0.4.0
-Date: 2018-09-03
+Date: 2018-10-03
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'Management API' for load counters, segments, filters,
@@ -15,7 +15,9 @@ Description: Allows work with 'Management API' for load counters, segments, filt
 	documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage/>.
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/selesnow/rym/issues
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
 License: GPL-2
 Imports: httr, stringr, utils
-URL: http://selesnow.github.io/
+URL: http://selesnow.github.io/rym
 Encoding: UTF-8
