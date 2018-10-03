@@ -19,16 +19,17 @@ Yandex Metrika counter ID, you can get ids of all your conters over rym_counters
   \item{token.path}{character, Directory for store API credential, by default is your work directory}
 }
 \value{
-Data frame with list of yandex metrika counter segments
+Data frame with list of yandex metrica counter segments
 	\item{id}{Segment id.}
-	\item{counter_id}{Yandex Metrika counter id.}
+	\item{counter_id}{Yandex Metrica counter id.}
 	\item{name}{Segment name.}
 	\item{expression}{An expression that matches the value of the filters parameter.}
 	\item{is_retargeting}{Logical, is retargeting segment or not.}
 	\item{segment_source}{Source of the segment. Indicates how to create it. Accepts the value of api - segments that are created using the API are used.}
 }
 \references{
-Official docs - https://tech.yandex.ru/metrika/doc/api2/management/segments/getsegmentsforcounter-docpage/
+\href{https://tech.yandex.ru/metrika/doc/api2/management/segments/getsegmentsforcounter-docpage/}{Official docs of Yandex Metrica Management API}
+\href{https://selesnow.github.io/rym/#%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%D1%81-api-%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F}{Docs on rym website}
 }
 \author{
 Alexey Seleznev

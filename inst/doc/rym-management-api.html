@@ -82,6 +82,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><code>rym_get_filters</code> — список настроенных фильтров в счётчике;</li>
 <li><code>rym_get_segments</code> — список настроенных сегмнтов в счётчике Яндекс.Метрики;</li>
 <li><code>rym_get_goals</code> — список настроенных целей в Яндекс.Метрике;</li>
+<li><code>rym_get_direct_clients</code> - данные о клиентах Яндекс.Директа, к кампаниям которых есть доступ у владельца счетчика Метрики;</li>
 <li><code>rym_users_grants</code> — список пользователей, у которых есть доступ к счётчику Яндекс.Метрики, с указанием уровня доступа.</li>
 </ul>
 <p>Набор аргументов для всех перечисленных выше функций одинаков:</p>
@@ -188,6 +189,14 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 </ul>
 </div>
+<div id="----rym_get_direct_clients" class="section level4">
+<h4>Списоок полей возвращаемых функцией <code>rym_get_direct_clients</code></h4>
+<ul>
+<li><em>id</em> - Идентификатор клиента Директа.</li>
+<li><em>name</em> - Имя клиента, указанное в настройках Директа.</li>
+<li><em>chief_login</em> - Логин главного представителя клиента в Директе. Может использоваться для формирования отчета Директ-расходы.</li>
+</ul>
+</div>
 <div id="----rym_users_grants" class="section level4">
 <h4>Списоок полей возвращаемых функцией <code>rym_users_grants</code></h4>
 <ul>
@@ -227,6 +236,11 @@ my_filter &lt;-<span class="st"> </span><span class="kw">rym_get_filters</span>(
 my_segments &lt;-<span class="st"> </span><span class="kw">rym_get_segments</span>(<span class="dt">counter    =</span> <span class="dv">000000000</span>,
                                 <span class="dt">login      =</span> <span class="st">&quot;ваш логин&quot;</span>,
                                 <span class="dt">token.path =</span> <span class="st">&quot;metrica_token&quot;</span>)
+
+<span class="co"># список клиентов Яндекс Директ</span>
+my_clients &lt;-<span class="st"> </span><span class="kw">rym_get_direct_clients</span>(<span class="dt">counters=</span><span class="st">&quot;000000000,111111111&quot;</span>,
+                                     <span class="dt">login =</span> <span class="st">&quot;my_login&quot;</span>,
+                                     <span class="dt">token.path =</span> <span class="st">&quot;metrica_token&quot;</span>)
 
 <span class="co"># список пользователей</span>
 users &lt;-<span class="st"> </span><span class="kw">rym_users_grants</span>(<span class="dt">counter    =</span> <span class="dv">000000000</span>,
