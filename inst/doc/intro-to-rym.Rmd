@@ -18,6 +18,8 @@ knitr::opts_chunk$set(
 
 # Введение в работу с пакетом `rym`
 
+CRAN: [![Rdoc](http://www.rdocumentation.org/badges/version/rym)](http://www.rdocumentation.org/packages/rym)
+
 ## Содержание
 
 * Краткое описание

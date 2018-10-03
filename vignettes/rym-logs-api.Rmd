@@ -1,0 +1,50 @@
+---
+title: "rym: Logs API Яндекс.Метрики"
+author: "Alexey Seleznev"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rym: Logs API Яндекс.Метрики}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Работа с Logs API Яндекс.Метрики
+
+Logs API предназначен для получения несгруппированных данных из Яндекс.Метрики, на самом деле вы можете получить данные в двух группировках:
+
+* просмотры - 1 строка будет хранить информацию об одном действии одного пользователя сайта
+* визиты - 1 строка содержит информацию о всех просмотрах в рамках одной пользовательской сессии
+
+Для загрузки данных из Logs API можно использовать функцию `rym_get_logs`, которая принимает следующий набор аргументов.
+
+* **counter** - Номер счётчика Яндекс Метрики.
+* **date.from** - Дата начала отчетного периода в формате YYYY-MM-DD.
+* **date.to** - Дата окончания отчетного периода в формате YYYY-MM-DD (не может быть текущим днем).
+* **fields** - Список полей через запятую. Актуальный список полей можно найти в официальной справке, [список полей для просмотров](https://tech.yandex.ru/metrika/doc/api2/logs/fields/hits-docpage/), [список полей для визитов](https://tech.yandex.ru/metrika/doc/api2/logs/fields/visits-docpage/).
+* **source** - Источник логов. hits — просмотры, visits — визиты.
+* **login** - Логин пользователя Яндекс.Метрики.
+* **token.path** - Путь к директории в которой хранится файлс с учётными данными, для текущего пользователя Яндекс.Метрики, указанного в аргументе *login*.
+
+### Пример работы с Logs API Яндекс.Метрики.
+
+```r
+logs.api.stat      <- rym_get_logs(counter    = 00000000,
+                                   date.from  = "2018-08-01",
+                                   date.to    = "2018-08-05",
+                                   fields     = "ym:s:date,
+                                                 ym:s:lastTrafficSource,
+                                                 ym:s:referer",
+                                   source     = "visits",
+                                   login      = "ваш логин",
+                                   token.path = "metrica_token")
+```
+
+*Перед использованием данного примера замените значения аргументов counter и login на ваши.*
