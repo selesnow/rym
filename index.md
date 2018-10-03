@@ -388,7 +388,7 @@ reporting.api.stat <- rym_get_data(counters   = "00000000,111111111",
 * **login** - Логин пользователя Яндекс.Метрики.
 * **token.path** - Путь к директории в которой хранится файлс с учётными данными, для текущего пользователя Яндекс.Метрики, указанного в аргументе *login*.
 
-### Пример работы с API сщвместимым с Core API Google Analytics
+### Пример работы с API совместимым с Core API Google Analytics
 
 ```r
 ga.api.stat        <- rym_get_ga(counter    = "ga:00000000",
