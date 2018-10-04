@@ -71,6 +71,7 @@ Data frame with dimension and metrics.
 }
 \references{
 \href{https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage/}{Reporting API docs}
+Read \code{\link[rym:rym-reporting-api]{vignette}}
 }
 \author{
 Alexey Seleznev
