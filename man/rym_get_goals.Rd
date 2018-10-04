@@ -21,7 +21,10 @@ Data frame with list of yandex metrica counters
 }
 \references{
 \href{https://tech.yandex.ru/metrika/doc/api2/management/goals/goals-docpage/}{Official docs of Yandex Metrica Management API}
+
 \href{https://selesnow.github.io/rym/#работа-с-api-управления}{Docs on rym website}
+
+Run \code{vignette("rym-management-api", package = "rym")} to see the corresponding vignette.
 }
 \author{
 Alexey Seleznev
