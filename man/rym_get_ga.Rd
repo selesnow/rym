@@ -57,6 +57,7 @@ Data frame with fields.
 \references{
 \href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{Official ompatible with the Google Analytics Core Reporting API (v3) docs}
 
+Run \code{vignette("rym-ga-api", package = "rym")} to see the corresponding vignette.
 }
 \author{
 Alexey Seleznev

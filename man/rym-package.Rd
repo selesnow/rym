@@ -29,6 +29,18 @@ Maintainer: \packageMaintainer{rym}
 \href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{API Compatible with Google Analytics Core API v3}
 
 \href{https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/}{Logs API Documentations}
+
+Or read vignettes:
+
+\code{vignette("intro-to-rym", package = "rym")}
+
+\code{vignette("rym-management-api", package = "rym")}
+
+\code{vignette("rym-reporting-api", package = "rym")}
+
+\code{vignette("rym-ga-api", package = "rym")}
+
+\code{vignette("rym-logs-api", package = "rym")}
 }
 \examples{
 \dontrun{

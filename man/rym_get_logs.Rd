@@ -45,6 +45,10 @@ Data frame with values and fields
 \href{https://tech.yandex.ru/metrika/doc/api2/logs/fields/hits-docpage/}{Hits fields}
 	
 \href{https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/}{Logs API docs}
+
+\href{https://selesnow.github.io/rym/}{Docs on rym website}
+
+Run \code{vignette("rym-logs-api", package = "rym")} to see the corresponding vignette.
 	
 }
 \author{
