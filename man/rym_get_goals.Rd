@@ -1,6 +1,6 @@
 \name{rym_get_goals}
 \alias{rym_get_goals}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 List of goals
 }
@@ -10,7 +10,7 @@ Returns information about the purpose of the yandex metrica counter.
 \usage{
 rym_get_goals(counter, login = NULL, token.path = getwd())
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{counter}{Yandex Metrika counter ID}
   \item{login}{character, Your Yandex login}
@@ -20,7 +20,7 @@ rym_get_goals(counter, login = NULL, token.path = getwd())
 Data frame with list of yandex metrica counters
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/management/goals/goals-docpage/}{Official docs of Yandex Metrica Management API}
+\href{https://tech.yandex.ru/metrika/doc/api2/management/goals/goals-docpage/}{Official docs of 'Yandex Metrica Management API'}
 
 \href{https://selesnow.github.io/rym/}{Docs on rym website}
 

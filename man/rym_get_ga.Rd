@@ -1,12 +1,12 @@
 \name{rym_get_ga}
 \alias{rym_get_ga}
 \title{
-Work with compatible with the Google Analytics Core Reporting API (v3)
+Work with 'compatible with the Google Analytics Core Reporting API (v3)'
 }
 \description{
 Allows you to perform the following operations:
 1. Obtain information about site traffic and other data.
-2. Integrate Yandex.Metrica data with applications developed with the Google Analytics Core Reporting API (v3) in mind.
+2. Integrate Yandex.Metrica data with applications developed with the 'Google Analytics Core Reporting API (v3)' in mind.
 3. Use the usual query parameters when collecting statistics, if you previously worked with the Google Analytics Core Reporting API (v3).
 }
 \usage{
@@ -55,7 +55,7 @@ Limits:
 Data frame with fields.
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{Official ompatible with the Google Analytics Core Reporting API (v3) docs}
+\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{Official compatible with the Google Analytics Core Reporting API (v3) docs}
 
 Run \code{vignette("rym-ga-api", package = "rym")} to see the corresponding vignette.
 }

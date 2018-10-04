@@ -4,7 +4,7 @@
 Get raw data from yandex metrika.
 }
 \description{
-	Logs API allows you to receive non-aggregated data collected by Yandex.Metrica. 
+	'Logs API' allows you to receive non-aggregated data collected by Yandex.Metrica. 
 	This API is intended for service users who want to independently process 
 	statistical data and use them to solve unique analytical problems.
 }

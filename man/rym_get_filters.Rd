@@ -1,6 +1,6 @@
 \name{rym_get_filters}
 \alias{rym_get_filters}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 List of filters
 }
@@ -10,7 +10,7 @@ Returns information about counter filters.
 \usage{
 rym_get_filters(counter, login = NULL, token.path = getwd())
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{counter}{
 Yandex Metrika counter ID, you can get ids of all your conters over rym_counters
@@ -31,7 +31,7 @@ Data frame with list of yandex metrika counter filters
 	\item{start_ip}{The last IP address of the range.}
 }
 \references{
-Official docs - https://tech.yandex.ru/metrika/doc/api2/management/filters/filters-docpage/
+\href{https://tech.yandex.ru/metrika/doc/api2/management/filters/filters-docpage/}{Official docs}
 }
 \author{
 Alexey Seleznev

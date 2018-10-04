@@ -5,7 +5,7 @@
 List of users permissions
 }
 \description{
-Returns information about the permissions to manage the counter and viewing statistics from management API.
+Returns information about the permissions to manage the counter and viewing statistics from 'management API'.
 }
 \usage{
 rym_users_grants(counter, login = NULL, token.path = getwd())

@@ -1,6 +1,6 @@
 \name{rym_get_segments}
 \alias{rym_get_segments}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 List of segments
 }
@@ -10,7 +10,7 @@ Returns a list of segments created using the API and related to the specified co
 \usage{
 rym_get_segments(counter, login = NULL, token.path = getwd())
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{counter}{
 Yandex Metrika counter ID, you can get ids of all your conters over rym_counters

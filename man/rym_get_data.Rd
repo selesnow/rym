@@ -1,7 +1,7 @@
 \name{rym_get_data}
 \alias{rym_get_data}
 \title{
-Load data by compatible with the Google Analytics Core Reporting API
+Load data by compatible with the 'Google Analytics Core Reporting API'
 }
 \description{
 The Reporting API allows you to obtain information about site visits statistics and other data without using the Yandex.Metrica interface.

@@ -9,7 +9,6 @@ Returns data about Yandex.Direct clients for campaigns that the owner of the Met
 \usage{
 rym_get_direct_clients(counters, login = NULL, token.path = getwd())
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{counters}{Counter identifiers, separated by commas}
   \item{login}{character, Your Yandex login}
