@@ -19,3 +19,10 @@
 
 На данный момент ещё готов русскоязычный мануал по работе с пакетом, но он появится в ближайшее время, пока можно использовать англоязычную справочку на Rdocumentation - https://www.rdocumentation.org/packages/rym/versions/..
 
+### Автор пакета
+Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
+<Br>email: selesnow@gmail.com
+<Br>skype: selesnow
+<Br>facebook: [facebook.com/selesnow](https://facebook.com/selesnow)
+<Br>linkedin: [linkedin.com/in/selesnow](https://linkedin.com/in/selesnow)
+<Br>blog: [alexeyseleznev.wordpress.com](https://alexeyseleznev.wordpress.com/)
