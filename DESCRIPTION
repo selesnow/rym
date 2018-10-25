@@ -13,7 +13,7 @@ Description: Allows work with 'Management API' for load counters, segments, filt
 	receive information about site traffic and other data using field names 
 	from Google Analytics Core API.	For more information see official 
 	documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage/>.
-Depends: R (>= 3.5.0)
+Depends: R (>= 3.3.0)
 BugReports: https://github.com/selesnow/rym/issues
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
