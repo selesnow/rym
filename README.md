@@ -21,6 +21,7 @@
 
 ### Автор пакета
 Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
+<Br>telegram channel: [R4marketing](https://t.me/R4marketing)
 <Br>email: selesnow@gmail.com
 <Br>skype: selesnow
 <Br>facebook: [facebook.com/selesnow](https://facebook.com/selesnow)
