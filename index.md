@@ -126,6 +126,7 @@ li.nm_li {
 # Содержание ReadMe пакета rym
 
 * [Краткое описание](#краткое-описание-пакета-rym)
+* [Запись вебинара по работе с пакетом rym]()
 * [Синтаксис пакета](#синтаксис-пакета)
 * [Установка пакета](#установка-rym)
 * [Авторизация в API Яндекс.Метрики](#авторизация-в-api-яндексметрики)
@@ -143,6 +144,12 @@ li.nm_li {
 2. [API Отчётов](https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage/) - позволяет получать информацию о статистике посещений сайта и другие данные, не используя интерфейс Яндекс.Метрики.
 3. [API совместимый с Core API Google Analytics (v3)](https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/) - позволяет запрашивать статистические данные используя при этом название полей такие же как и при работе с Core Reporting API v3.
 4. [Logs API](https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/) - позволяет получить сырые, несгруппированные данные о посещении вашего сайта из Яндекс.Метрики.
+
+## Запись вебинара по работе с пакетом rym
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sCp2D6068es" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+* Презентация [SliseShare](https://fr.slideshare.net/Netpeak/kak-avtomatizirovat-rabotu-s-dannymi-y-andeks-metriki), [Google Диск](https://www.youtube.com/redirect?v=sCp2D6068es&event=video_description&redir_token=aZtyUXEnftbPlt_iwWLb1H3mWu18MTU0NDc5NDUxNkAxNTQ0NzA4MTE2&q=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1V9_z_H3E9ReBofuiOerCmP2CBU45JrCL%2Fview)
+* [Рассмотренный в вебинаре пример кода](https://www.youtube.com/redirect?v=sCp2D6068es&event=video_description&redir_token=aZtyUXEnftbPlt_iwWLb1H3mWu18MTU0NDc5NDUxNkAxNTQ0NzA4MTE2&q=https%3A%2F%2Fgithub.com%2Fselesnow%2Fpublications%2Fblob%2Fmaster%2Fcode_example%2Fcybermarketing-2018%2Fyandex-metrica.R)
 
 ## Синтаксис пакета
 
