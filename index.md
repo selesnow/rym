@@ -111,8 +111,6 @@ li.nm_li {
 <gcse:search></gcse:search>
 <Br>
 
-<gcse:search></gcse:search>
-
 # Ссылки
 * [Документация](https://selesnow.github.io/rym/)
 * [Отчёт об ошибках и доработках](https://github.com/selesnow/rym/issues)
