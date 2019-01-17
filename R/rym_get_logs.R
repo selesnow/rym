@@ -63,7 +63,7 @@ function(counter = NULL,
           #get data
           logapidata <- GET(paste0("https://api-metrika.yandex.ru/management/v1/counter/",counter,"/logrequest/",request_id,"/part/",parts,"/download?oauth_token=",token))
           rawdata <- try(content(logapidata,"text","application/json",encoding = "UTF-8"), silent = T)
-          df_temp <- try(read.delim(text=rawdata), silent = T)
+          df_temp <- try(read.delim(text=rawdata, numerals = "no.loss"), silent = T)
           result <- rbind(result, df_temp)
         }
         #message
