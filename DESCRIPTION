@@ -2,18 +2,18 @@ Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
 Version: 0.5.1
-Date: 2018-10-03
+Date: 2019-01-17
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'Management API' for load counters, segments, filters,
-    user permissions and goals list from Yandex Metrica, 'Reporting API' allows you to get 
+	user permissions and goals list from Yandex Metrica, 'Reporting API' allows you to get 
 	information about the statistics of site visits and other data without
 	using the web interface, 'Logs API' allows to receive non-aggregated data and 
-    'Compatible with Google Analytics Core Reporting API v3' allows 
+	'Compatible with Google Analytics Core Reporting API v3' allows 
 	receive information about site traffic and other data using field names 
 	from Google Analytics Core API.	For more information see official 
 	documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage/>.
-Depends: R (>= 3.3.0)
+Depends: R (>= 3.5.0)
 BugReports: https://github.com/selesnow/rym/issues
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
