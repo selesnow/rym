@@ -120,6 +120,7 @@ li.nm_li {
 
 # CRAN
 [![Rdoc](http://www.rdocumentation.org/badges/version/rym)](http://www.rdocumentation.org/packages/rym)
+[![rpackages.io rank](http://www.rpackages.io/badge/rym.svg)](http://www.rpackages.io/package/rym)
 
 # Содержание ReadMe пакета rym
 
