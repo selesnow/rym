@@ -111,6 +111,7 @@ li.nm_li {
 <gcse:search></gcse:search>
 <Br>
 
+# rym - пакет для работы с API Яндекс Метрик <a href='https:/selesnow/github.io/rym'><img src='https://raw.githubusercontent.com/selesnow/rym/master/inst/logo/rym.png' align="right" height="139" /></a>
 # Ссылки
 * [Документация](https://selesnow.github.io/rym/)
 * [Отчёт об ошибках и доработках](https://github.com/selesnow/rym/issues)
