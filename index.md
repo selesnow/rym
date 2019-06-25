@@ -123,6 +123,11 @@ li.nm_li {
 [![rpackages.io rank](http://www.rpackages.io/badge/rym.svg)](http://www.rpackages.io/package/rym)
 [![](https://cranlogs.r-pkg.org/badges/rym)](https://cran.r-project.org/package=rym)
 
+# Стикер
+<p align="center">
+<img src="https://raw.githubusercontent.com/selesnow/rym/master/inst/logo/rym.png" height="200">
+</p>
+
 # Содержание ReadMe пакета rym
 
 * [Краткое описание](#краткое-описание-пакета-rym)
