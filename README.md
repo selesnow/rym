@@ -3,6 +3,10 @@
 [![rpackages.io rank](http://www.rpackages.io/badge/rym.svg)](http://www.rpackages.io/package/rym)
 [![](https://cranlogs.r-pkg.org/badges/rym)](https://cran.r-project.org/package=rym)
 
+<p align="center">
+<img src="https://raw.githubusercontent.com/selesnow/rym/master/inst/logo/rym.png" height="200">
+</p>
+
 ## ru
 Пакет rym предназначен для работы со следующими API интерфейсами Яндекс Метрики:
 
