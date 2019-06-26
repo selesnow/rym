@@ -14,12 +14,89 @@
 
 4. [Logs API](https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/) с помощью которого можно получить сырые, не сгруппированные данные о просмотрах или визитах на ваш сайт со всеми доступными параметрами.
 
-Пакет изначально разрабатывался согласно политике CRAN, пожтому установить его можно как с репозитория на GitHub, так и напрямую с CRAN.
+Пакет изначально разрабатывался согласно политике CRAN, поэтому установить его можно как с репозитория на GitHub, так и напрямую с CRAN.
 
-Установка с CRAN: install.packages("rym")
-Установка с GitHub: devtools::install_github("selesnow/rym")
+Установка с CRAN: `install.packages("rym")`
+Установка с GitHub: `devtools::install_github("selesnow/rym")`
 
-На данный момент ещё готов русскоязычный мануал по работе с пакетом, но он появится в ближайшее время, пока можно использовать англоязычную справочку на Rdocumentation - https://www.rdocumentation.org/packages/rym/versions/..
+### Пример кода для работы с пакетом rym
+```r
+install.packages('rym')
+library(rym)
+
+# переходим в рабочую директорию
+setwd("C:\\webinars\\cybermarketing-2018")
+
+# авторизаци под двумя разными аккаунтами
+rym_auth(login = "vipman.netpeak", token.path = "metrica_token")
+rym_auth(login = "selesnow", token.path = "metrica_token")
+
+
+# API Управления
+# получить список счЄтчиков
+selesnow.counters <- rym_get_counters(login      = "selesnow",
+                                      token.path = "metrica_token")
+
+vipman.counters   <- rym_get_counters(login      = "vipman.netpeak",
+                                      token.path = "metrica_token")
+
+# получить список целей
+my_goals <- rym_get_goals(counter = 10595804,
+                          login      = "vipman.netpeak",
+                          token.path = "metrica_token")
+
+# получить список фильров
+my_filter <- rym_get_filters(counter = 10595804,
+                             login      = "vipman.netpeak",
+                             token.path = "metrica_token")
+
+# получить список сегментов
+my_segments <- rym_get_segments(counter = 10595804,
+                                login      = "vipman.netpeak",
+                                token.path = "metrica_token")
+
+# получить список пользователей счЄтчика
+users <- rym_users_grants(counter = 10595804,
+                          login      = "vipman.netpeak",
+                          token.path = "metrica_token")
+
+# API отчЄтов
+reporting.api.stat <- rym_get_data(counters   = "23660530,10595804",
+                                   date.from  = "2018-08-01",
+                                   date.to    = "yesterday",
+                                   dimensions = "ym:s:date,ym:s:lastTrafficSource",
+                                   metrics    = "ym:s:visits,ym:s:pageviews,ym:s:users",
+                                   sort       = "-ym:s:date",
+                                   login      = "vipman.netpeak",
+                                   token.path = "metrica_token",
+                                   lang = "en")
+
+# Logs API
+logs.api.stat      <- rym_get_logs(counter    = 23660530,
+                                   date.from  = "2018-08-01",
+                                   date.to    = "2018-08-05",
+                                   fields     = "ym:s:date,
+                                                 ym:s:lastTrafficSource,
+                                                 ym:s:referer",
+                                   source     = "visits",
+                                   login      = "vipman.netpeak",
+                                   token.path = "metrica_token")
+
+# API —овместимый с Core API Google Analytics v3
+ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
+                                 dimensions = "ga:date,ga:source",
+                                 metrics    = "ga:sessions,ga:users",
+                                 start.date = "2018-08-01",
+                                 end.date   = "2018-08-05",
+                                 sort       = "-ga:date",
+                                 login      = "selesnow",
+                                 token.path = "metrica_token")
+```
+
+### Ссылки
+1. [Официальная документация](https://selesnow.github.io/rym) к пакету `rym`.
+2. [Вебинар](https://www.youtube.com/watch?v=sCp2D6068es) посвящённый работе с пакетом `rym`.
+3. [Страница](https://CRAN.R-project.org/package=rym) пакета на CRAN.
 
 ### Автор пакета
 Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
