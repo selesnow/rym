@@ -6,7 +6,7 @@ rym_get_counters <-
     
     result <- data.frame()
     
-    limit  <- 1000
+    limit  <- 5000
     offset <- 1
     total  <- list( value = 0, 
                     first_query = TRUE)
