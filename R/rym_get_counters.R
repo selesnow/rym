@@ -6,7 +6,7 @@ rym_get_counters <-
     
     result <- data.frame()
     
-    limit  <- 750
+    limit  <- 1000
     offset <- 1
     total  <- list( value = 0, 
                     first_query = TRUE)
@@ -37,7 +37,7 @@ rym_get_counters <-
         res[[counter]] <- data.frame(id                      = raw_data$counters[[counter]]$id,
                                      status                  = raw_data$counters[[counter]]$status,
                                      owner_login             = raw_data$counters[[counter]]$owner_login,
-                                     name                    = raw_data$counters[[counter]]$name,
+                                     name                    = ifelse(is.null(raw_data$counters[[counter]]$name), NA,  raw_data$counters[[counter]]$name),
                                      code_status             = raw_data$counters[[counter]]$code_status,
                                      site                    = raw_data$counters[[counter]]$site,
                                      permission              = raw_data$counters[[counter]]$permission,
