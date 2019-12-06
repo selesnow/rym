@@ -1,7 +1,7 @@
 Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
-Version: 0.5.3
+Version: 0.5.4
 Date: 2019-12-05
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
