@@ -39,10 +39,10 @@ rym_get_counters <-
                                      owner_login             = raw_data$counters[[counter]]$owner_login,
                                      name                    = ifelse(is.null(raw_data$counters[[counter]]$name), NA,  raw_data$counters[[counter]]$name),
                                      code_status             = raw_data$counters[[counter]]$code_status,
-                                     site                    = raw_data$counters[[counter]]$site,
-                                     permission              = raw_data$counters[[counter]]$permission,
-                                     type                    = raw_data$counters[[counter]]$type,
-                                     gdpr_agreement_accepted = raw_data$counters[[counter]]$gdpr_agreement_accepted)
+                                     site                    = ifelse(is.null(raw_data$counters[[counter]]$site), NA, raw_data$counters[[counter]]$site),
+                                     permission              = ifelse(is.null(raw_data$counters[[counter]]$permission), NA, raw_data$counters[[counter]]$permission),
+                                     type                    = ifelse(is.null(raw_data$counters[[counter]]$type), NA, raw_data$counters[[counter]]$type),
+                                     gdpr_agreement_accepted = ifelse(is.null(raw_data$counters[[counter]]$gdpr_agreement_accepted), NA, raw_data$counters[[counter]]$gdpr_agreement_accepted))
       }
       
       
