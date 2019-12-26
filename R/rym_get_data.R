@@ -1,34 +1,44 @@
 rym_get_data <-
 function(direct.client.logins = NULL,
-                         counters,
-                         metrics              = "ym:s:visits,ym:s:pageviews,ym:s:users",
-                         dimensions           = NULL,
-                         filters              = NULL,
-                         sort                 = NULL,
-                         date.from            = "8daysAgo",
-                         date.to              = "yesterday",
-                         accuracy             = "full",
-                         include_undefined    = TRUE,
-                         lang                 = "ru",
-                         timezone             = NULL,
-                         pretty               = FALSE,
-                         login                = NULL,
-                         token.path = getwd()) {
+         counters             = NULL,
+         metrics              = "ym:s:visits,ym:s:pageviews,ym:s:users",
+         dimensions           = NULL,
+         filters              = NULL,
+         sort                 = NULL,
+         date.from            = "8daysAgo",
+         date.to              = "yesterday",
+         accuracy             = "full",
+         include.undefined    = TRUE,
+         lang                 = "ru",
+         timezone             = NULL,
+         pretty               = FALSE,
+         login                = NULL,
+         token.path           = getwd()) {
 
   # auth
   ym_token <- rym_auth(login = login, token.path = token.path)$access_token
-
+ 
+  # check counters
+  if ( is.null() ) {
+    counters <- rym_get_counters(login, token.path)
+  }
+  
   limit    <- 100000
   offset   <- 1
 
   out_rows <- 1
 
   result  <- list()
+  
+  # prepaire parameters
+  counters   <- paste0(counters,   collapse = ",")
+  metrics    <- paste0(metrics,    collapse = ",")
+  dimensions <- paste0(dimensions, collapse = ",")
 
   # total rows
   ans <- GET(url = "https://api-metrika.yandex.ru/stat/v1/data",
              query = list(direct_client_logins = direct.client.logins,
-                          ids                  = counters,
+                          ids                  = gsub("[\\s\\n\\t]", "", counters, perl = TRUE),
                           metrics              = gsub("[\\s\\n\\t]", "", metrics, perl = TRUE),
                           date1                = date.from,
                           date2                = date.to,
@@ -37,7 +47,7 @@ function(direct.client.logins = NULL,
                           filters              = filters,
                           sort                 = sort,
                           timezone             = timezone,
-                          include_undefined    = include_undefined,
+                          include_undefined    = include.undefined,
                           lang                 = tolower(lang),
                           pretty               = pretty,
                           timezone             = timezone,
@@ -53,7 +63,7 @@ function(direct.client.logins = NULL,
   while (out_rows > 0) {
   answer <- GET(url = "https://api-metrika.yandex.ru/stat/v1/data.csv",
                 query = list(direct_client_logins = direct.client.logins,
-                             ids                  = counters,
+                             ids                  = gsub("[\\s\\n\\t]", "", counters, perl = TRUE),
                              metrics              = gsub("[\\s\\n\\t]", "", metrics, perl = TRUE),
                              date1                = date.from,
                              date2                = date.to,
