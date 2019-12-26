@@ -8,7 +8,8 @@ List of filters
 Returns information about counter filters.
 }
 \usage{
-rym_get_filters(counter, login = NULL, token.path = getwd())
+rym_get_filters(counter, login = getOption("rym.user"), 
+                token.path = getOption("rym.token_path"))
 }
 
 \arguments{

@@ -7,7 +7,8 @@ Load Yandex.Direct clients
 Returns data about Yandex.Direct clients for campaigns that the owner of the Metrics counter has access to.
 }
 \usage{
-rym_get_direct_clients(counters, login = NULL, token.path = getwd())
+rym_get_direct_clients(counters, login = getOption("rym.user"), 
+                       token.path = getOption("rym.token_path"))
 }
 \arguments{
   \item{counters}{Counter identifiers, separated by commas}

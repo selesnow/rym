@@ -14,7 +14,8 @@ rym_get_logs(counter = NULL, date.from = Sys.Date() - 10, date.to =
     "ym:s:date,ym:s:counterID,ym:s:dateTime,
 	ym:s:isNewUser,ym:s:startURL,ym:s:visitDuration,
 	ym:s:ipAddress,ym:s:referer",
-    source = "visits", login = NULL, token.path = getwd())
+    source = "visits", login = getOption("rym.user"), 
+	token.path = getOption("rym.token_path"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

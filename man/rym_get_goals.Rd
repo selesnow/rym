@@ -8,7 +8,8 @@ List of goals
 Returns information about the purpose of the yandex metrica counter.
 }
 \usage{
-rym_get_goals(counter, login = NULL, token.path = getwd())
+rym_get_goals(counter, login = getOption("rym.user"), 
+          token.path = getOption("rym.token_path"))
 }
 
 \arguments{

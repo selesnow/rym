@@ -15,7 +15,8 @@ rym_get_ga(start.date = "10daysAgo", end.date = "today",
   metrics = "ga:sessions,ga:bounces,ga:users", 
   filters = NULL, sort = NULL, 
   sampling.level = "HIGHER_PRECISION", 
-  login = NULL, token.path = getwd())
+  login = getOption("rym.user"), 
+  token.path = getOption("rym.token_path"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -14,7 +14,8 @@ rym_get_data(direct.client.logins = NULL, counters,
   date.to = "yesterday", accuracy = "full", 
   include.undefined = TRUE, lang = "ru", 
   timezone = NULL, pretty = FALSE, 
-  login = NULL, token.path = getwd())
+  login = getOption("rym.user"), 
+  token.path = getOption("rym.token_path"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

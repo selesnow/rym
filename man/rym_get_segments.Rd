@@ -8,7 +8,8 @@ List of segments
 Returns a list of segments created using the API and related to the specified counter.
 }
 \usage{
-rym_get_segments(counter, login = NULL, token.path = getwd())
+rym_get_segments(counter, login = getOption("rym.user"), 
+                 token.path = getOption("rym.token_path"))
 }
 
 \arguments{

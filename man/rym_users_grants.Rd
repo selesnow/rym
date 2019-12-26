@@ -8,7 +8,8 @@ List of users permissions
 Returns information about the permissions to manage the counter and viewing statistics from 'management API'.
 }
 \usage{
-rym_users_grants(counter, login = NULL, token.path = getwd())
+rym_users_grants(counter, login = getOption("rym.user"), 
+                 token.path = getOption("rym.token_path"))
 }
 
 \arguments{

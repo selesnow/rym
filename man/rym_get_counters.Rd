@@ -5,7 +5,8 @@
 Returns a list of existing counters available to the user.
 }
 \usage{
-rym_get_counters(login = NULL, token.path = getwd(),
+rym_get_counters(login = getOption("rym.user"), 
+                 token.path = getOption("rym.token_path"),
                  search.string = NULL)
 }
 \arguments{
