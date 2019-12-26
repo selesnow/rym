@@ -98,6 +98,14 @@ ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
 2. [Вебинар](https://www.youtube.com/watch?v=sCp2D6068es) посвящённый работе с пакетом `rym`.
 3. [Страница](https://CRAN.R-project.org/package=rym) пакета на CRAN.
 
+## Статьи:
+- [Как работать с API Яндекс.Метрики с помощью языка R](https://netpeak.net/ru/blog/kak-rabotat-s-api-yandeks-metriki-s-pomoshch-yu-yazyka-r/), *Алексей Селезнёв*
+- [Как использовать Rscript в качестве источника данных в Microsoft Power BI на примере Яндекс.Метрики](https://www.mediaguru.ru/blog/kak-ispolzovat-rscript-v-kachestve-istochnika-dannyh-v-microsoft-power-bi-na-primere-yandeks-metriki/), *Павел Мрыкин*
+- [Построение поведенческих воронок на языке R, на основе данных полученных из Logs API Яндекс.Метрики](https://habr.com/ru/post/462279/), *Алексей Селезнёв*
+- [Обзор R пакетов для интернет маркетинга, часть 1](https://habr.com/ru/post/425425/), *Алексей Селезнёв*
+- [Насколько безопасно использовать R пакеты для работы с API рекламных систем](https://habr.com/ru/post/430888/), *Алексей Селезнёв*
+- [Как массово удалить в интернет-магазине страницы товаров, которые не приносят трафик](https://netpeak.net/ru/blog/kak-massovo-udalit-v-internet-magazine-stranitsy-tovarov-kotoryye-ne-prinosyat-trafik/), *Богдан Неряхин*
+
 ### Автор пакета
 Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
 <Br>telegram channel: [R4marketing](https://t.me/R4marketing)
