@@ -7,8 +7,13 @@ rym_get_ga <-
             filters = NULL,
             sort = NULL,
             sampling.level = "HIGHER_PRECISION",
-            login = NULL,
-            token.path = getwd()){
+            login = getOption("rym.user"), 
+            token.path = getOption("rym.token_path")){
+    
+    # check path
+    if ( is.null(token.path) ) {
+      token.path <- getwd()
+    }
     
     #check args
     if(is.null(counter)){

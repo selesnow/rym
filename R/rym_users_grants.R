@@ -1,6 +1,12 @@
 rym_users_grants <-
-function(counter, login = NULL, token.path = getwd()) {
-      
+function(counter, login = getOption("rym.user"), 
+         token.path = getOption("rym.token_path")) {
+    
+    # token path
+    if ( is.null(token.path) ) {
+      token.path <- getwd()
+    }
+  
     # auth
     ym_token <- rym_auth(login = login, token.path = token.path)$access_token
     

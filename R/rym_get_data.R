@@ -12,8 +12,13 @@ function(direct.client.logins = NULL,
          lang                 = "ru",
          timezone             = NULL,
          pretty               = FALSE,
-         login                = NULL,
-         token.path           = getwd()) {
+         login = getOption("rym.user"), 
+         token.path = getOption("rym.token_path")) {
+  
+  # check path
+  if ( is.null(token.path) ) {
+    token.path <- getwd()
+  }
 
   # auth
   ym_token <- rym_auth(login = login, token.path = token.path)$access_token

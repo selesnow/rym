@@ -1,5 +1,11 @@
 rym_get_direct_clients <-
-  function(counters, login = NULL, token.path = getwd()) {
+  function(counters, login = getOption("rym.user"), 
+           token.path = getOption("rym.token_path")) {
+    
+    # check path
+    if ( is.null(token.path) ) {
+      token.path <- getwd()
+    }
     
     # auth
     ym_token <- rym_auth(login = login, token.path = token.path)$access_token

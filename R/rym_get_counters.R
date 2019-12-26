@@ -1,5 +1,11 @@
 rym_get_counters <-
-  function(login = NULL, token.path = getwd(), search.string = NULL) {
+  function(login = getOption("rym.user"), 
+           token.path = getOption("rym.token_path"), 
+           search.string = NULL) {
+    
+    if ( is.null(token.path) ) {
+      token.path <- getwd()
+    }
     
     # auth
     ym_token <- rym_auth(login = login, token.path = token.path)$access_token

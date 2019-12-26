@@ -6,10 +6,15 @@ function(counter = NULL,
 	ym:s:isNewUser,ym:s:startURL,ym:s:visitDuration,
 	ym:s:ipAddress,ym:s:referer", 
                          source = "visits", 
-                         login = NULL,
-                         token.path = getwd()){
-  
+                         login = getOption("rym.user"), 
+                         token.path = getOption("rym.token_path")){
+    
     fun_start <- Sys.time()
+    
+    # check path
+    if ( is.null(token.path) ) {
+      token.path <- getwd()
+    }
     
     token <- rym_auth(login = login, token.path = token.path)$access_token
     

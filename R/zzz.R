@@ -1,5 +1,24 @@
 .onAttach <- function(lib, pkg,...){
   packageStartupMessage(rymWelcomeMessage())
+  
+  packageStartupMessage("rym presets:")
+  
+  ## token path
+  packageStartupMessage("...Set rym token_path: ", appendLF = F)
+  if ( Sys.getenv("RYM_TOKEN_PATH") != "" ) {
+    packageStartupMessage("success")
+  } else {
+    packageStartupMessage("none")
+  }
+  
+  ## username
+  packageStartupMessage("...Set rym username: ", appendLF = F)
+  if ( Sys.getenv("RYM_USER") != "" ) {
+    packageStartupMessage("success")
+  } else {
+    packageStartupMessage("none")
+  }
+  
 }
 
 #
@@ -38,4 +57,20 @@ rymWelcomeMessage <- function(){
          "\tTo suppress this message use:  ", "suppressPackageStartupMessages(library(rym))\n",
          "---------------------\n"
   )
+}
+
+
+.onLoad <- function(libname, pkgname) {
+  
+  op <- options()
+  
+  op.rym <- list(rym.user       = Sys.getenv("RYM_USER"),
+                 rym.token_path = Sys.getenv("RYM_TOKEN_PATH"))
+  
+  op.rym <- lapply(op.rym, function(x) if ( x == "" ) return(NULL) else return(x))
+  
+  toset <- !(names(op.rym ) %in% names(op))
+  if (any(toset)) options(op.rym[toset])
+  
+  invisible()
 }
