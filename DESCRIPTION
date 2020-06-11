@@ -1,8 +1,8 @@
 Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
-Version: 0.6.0
-Date: 2019-12-26
+Version: 0.7.0
+Date: 2020-06-11
 Author: Alexey Seleznev <selesnow@gmail.com>
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'Management API' for load counters, segments, filters,
@@ -18,7 +18,7 @@ BugReports: https://github.com/selesnow/rym/issues
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 License: GPL-2
-Imports: httr, stringr, utils
+Imports: httr, stringr, utils, purrr
 URL: http://selesnow.github.io/rym
 Encoding: UTF-8
 Language: ru
