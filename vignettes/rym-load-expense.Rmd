@@ -1,10 +1,10 @@
 ---
-title: "rym: Загрузка данных о расходах в Яндекс.Метрику"
+title: "rym: Загрузка данных о расходах в Яндекс Метрику"
 author: "Alexey Seleznev"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{rym: Загрузка данных о расходах в Яндекс.Метрику}
+  %\VignetteIndexEntry{rym: Загрузка данных о расходах в Яндекс Метрику}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

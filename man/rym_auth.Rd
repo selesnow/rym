@@ -7,8 +7,9 @@ Authentication in Yandex Metrika API
 Actually you don`t need call rym_auth since it will be called when you run any of the functions available in rym.
 }
 \usage{
-rym_auth(login = NULL, new.user = FALSE, 
-	token.path = getwd())
+rym_auth(login = getOption("rym.user"), 
+         new.user = FALSE, 
+         token.path = getOption("rym.token_path"))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

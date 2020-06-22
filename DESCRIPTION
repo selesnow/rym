@@ -1,9 +1,15 @@
 Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
-Version: 0.7.0
+Version: 1.0.0
 Date: 2020-06-11
-Author: Alexey Seleznev <selesnow@gmail.com>
+Authors@R: 
+    c(person(given  = "Alexey",
+             family = "Seleznev",
+             role   = c("aut", "cre"),
+             email  = "selesnow@gmail.com",
+             comment = c(ORCID = "0000-0003-0410-7385")))
+Author: Alexey Seleznev [aut, cre] (<https://orcid.org/0000-0003-0410-7385>)
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'Management API' for load counters, segments, filters,
 	user permissions and goals list from Yandex Metrica, 'Reporting API' allows you to get 
