@@ -55,7 +55,7 @@ rym_auth <-
       }
     }
     # if we dont find token file start a auth procedure
-    browseURL(paste0("https://oauth.yandex.ru/authorize?response_type=code&client_id=04e7f096ce21483fb1c9861f68c017d7&redirect_uri=https://selesnow.github.io/rym/getToken/get_code.html&force_confirm=", as.integer(new.user), ifelse(is.null(login), "", paste0("&login_hint=", login))))
+    browseURL(paste0("https://oauth.yandex.ru/authorize?response_type=code&client_id=5a87e45d5562421bb29bb9abd17321b3&redirect_uri=https://selesnow.github.io/rym/getToken/get_code.html&force_confirm=", as.integer(new.user), ifelse(is.null(login), "", paste0("&login_hint=", login))))
     # read auth code
     temp_code <- readline(prompt = "Enter authorize code:")
 
