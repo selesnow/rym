@@ -26,8 +26,8 @@ rym_auth <-
         token_raw <- httr::POST("https://oauth.yandex.ru/token", body = list(
           grant_type = "refresh_token",
           refresh_token = token$refresh_token,
-          client_id = "365a2d0a675c462d90ac145d4f5948cc",
-          client_secret = "f2074f4c312449fab9681942edaa5360"
+          client_id = "5a87e45d5562421bb29bb9abd17321b3",
+          client_secret = "04e7f096ce21483fb1c9861f68c017d7"
         ), encode = "form")
         # check error
         if (!is.null(token$error_description)) {
@@ -55,7 +55,7 @@ rym_auth <-
       }
     }
     # if we dont find token file start a auth procedure
-    browseURL(paste0("https://oauth.yandex.ru/authorize?response_type=code&client_id=1ce6320929254d4eaf711f650538f4c9&redirect_uri=https://selesnow.github.io/rym/getToken/get_code.html&force_confirm=", as.integer(new.user), ifelse(is.null(login), "", paste0("&login_hint=", login))))
+    browseURL(paste0("https://oauth.yandex.ru/authorize?response_type=code&client_id=04e7f096ce21483fb1c9861f68c017d7&redirect_uri=https://selesnow.github.io/rym/getToken/get_code.html&force_confirm=", as.integer(new.user), ifelse(is.null(login), "", paste0("&login_hint=", login))))
     # read auth code
     temp_code <- readline(prompt = "Enter authorize code:")
 
