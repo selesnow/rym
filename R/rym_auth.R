@@ -68,8 +68,8 @@ rym_auth <-
     token_raw <- httr::POST("https://oauth.yandex.ru/token", body = list(
       grant_type = "authorization_code",
       code = temp_code,
-      client_id = "1ce6320929254d4eaf711f650538f4c9",
-      client_secret = "fff246575c8a408e84e69b9ce5de0cae"
+      client_id = "5a87e45d5562421bb29bb9abd17321b3",
+      client_secret = "04e7f096ce21483fb1c9861f68c017d7"
     ), encode = "form")
     # parsing
     token <- content(token_raw)
