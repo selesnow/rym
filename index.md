@@ -276,6 +276,19 @@ install.packages("devtools")
 devtools::install_github("selesnow/rym")
 ```
 
+## Виньетки
+
+Виньетки это набор статей, которые состовляют документацию к пакету написанную в произвольной форме. На данный момент к пакету `rym` написанны следующие виньетки:
+
+* [Введение в Пакет rym](https://selesnow.github.io/rym/inst/doc/intro-to-rym.html)
+* [API отчётов Яндекс.Метрики](https://selesnow.github.io/rym/inst/doc/rym-reporting-api.html)
+* [API Яндекс.Метрики совместимым с Core Reporting API Google Analytics](https://selesnow.github.io/rym/inst/doc/rym-ga-api.html)
+* [Logs API Яндекс.Метрики](https://selesnow.github.io/rym/inst/doc/rym-logs-api.html)
+* [API управления Яндекс.Метрики](https://selesnow.github.io/rym/inst/doc/rym-management-api.html)
+* [Загрузка данных о расходах в Яндекс Метрику](https://selesnow.github.io/rym/inst/doc/rym-load-expense.html)
+* [Загрузка оффлайн конверсий в Яндекс.Метрику](https://selesnow.github.io/rym/inst/doc/rym-load-offline-conversion.html)
+* [Загрузка информации о звонках в Яндекс.Метрику](https://selesnow.github.io/rym/inst/doc/rym-calls.html)
+
 ## Авторизация в API Яндекс.Метрики
 
 Для работы с API Яндекс.Метрики изначально вам необходимо пройти [авторизацию](https://tech.yandex.ru/metrika/doc/api2/intro/authorization-docpage/), в `rym` для этого существует отдельная функция `rym_auth`. Но в целом нет необходимоси проходить авторизацию с помощью данной функции т.к. при любом обращении к API, с помощью любой из достпных в пакете функций будет запущен процесс авторизации, который в `rym` происходит по следующей схеме.
