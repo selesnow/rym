@@ -68,6 +68,14 @@ rym_get_data <-
     if (!is.null(check$errors)) {
       stop(check$code, ": ", check$message)
     }
+    
+    if ( check$total_rows == 0 ) {
+      
+      warning('Report has 0 rows, check query parameters, and try again.')
+      
+      return(NULL)
+      
+    }
 
     while (out_rows > 0) {
       answer <- GET(
@@ -94,7 +102,7 @@ rym_get_data <-
       )
 
       # result pars
-      data <- suppressWarnings(suppressMessages(content(answer, as = "parsed", "text/csv")[-1, ]))
+      data <- suppressWarnings(suppressMessages(content(answer, as = "parsed", "text/csv")))
 
       offset <- offset + limit
       out_rows <- nrow(data)
@@ -104,8 +112,14 @@ rym_get_data <-
         result <- append(result, list(data))
       }
     }
-
+    
+    # binding rows
     my_data <- do.call("rbind", result)
-
+    
+    # filter totals
+    if ( nrow(my_data) > 1 ) {
+      my_data <- my_data[-1,]
+    }
+    
     return(my_data)
   }

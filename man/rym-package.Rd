@@ -20,7 +20,7 @@ The DESCRIPTION file:
 Maintainer: \packageMaintainer{rym}
 }
 \references{
-\href{https://selesnow.github.io/rym}{Officialrym documents}
+\href{https://selesnow.github.io/rym/}{Officialrym documents}
 
 \href{https://tech.yandex.ru/metrika/doc/api2/management/intro-docpage/}{Management API Documents}
 

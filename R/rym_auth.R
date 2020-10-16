@@ -46,11 +46,17 @@ rym_auth <-
         # save
         save(token, file = paste0(token.path, "/", login, ".rymAuth.RData"))
         message("Token rewrite in file ", paste0(token.path, "/", login, ".rymAuth.RData"))
-
+        
+        # set login
+        options(rym.user = login)
+        
         return(token)
       } else {
         message("Token expire in ", round(as.numeric(token$expire_at - Sys.time(), units = "days"), 0), " days")
 
+        # set login
+        options(rym.user = login)
+        
         return(token)
       }
     }
@@ -94,5 +100,8 @@ rym_auth <-
       save(token, file = paste0(token.path, "/", login, ".rymAuth.RData"))
       message("Token saved in file ", paste0(token.path, "/", login, ".rymAuth.RData"))
     }
+    
+    # set login
+    options(rym.user = login)
     return(token)
   }
