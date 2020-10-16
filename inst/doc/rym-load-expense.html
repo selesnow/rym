@@ -12,27 +12,39 @@
 
 <meta name="author" content="Alexey Seleznev" />
 
-<meta name="date" content="2020-06-11" />
+<meta name="date" content="2020-10-16" />
 
-<title>rym: Загрузка данных о расходах в Яндекс.Метрику</title>
+<title>rym: Загрузка данных о расходах в Яндекс Метрику</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -52,7 +64,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -301,9 +313,9 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">rym: Загрузка данных о расходах в Яндекс.Метрику</h1>
+<h1 class="title toc-ignore">rym: Загрузка данных о расходах в Яндекс Метрику</h1>
 <h4 class="author">Alexey Seleznev</h4>
-<h4 class="date">2020-06-11</h4>
+<h4 class="date">2020-10-16</h4>
 
 
 
@@ -348,41 +360,41 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </div>
 <div id="пример-подготовки-загрузки-и-удаленния-данных" class="section level2">
 <h2>Пример подготовки, загрузки и удаленния данных</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># данные для загрузки</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>expense &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Date        =</span> <span class="kw">c</span>(<span class="st">&quot;2020-06-01&quot;</span>,</span>
-<span id="cb1-3"><a href="#cb1-3"></a>                                      <span class="st">&quot;2020-06-02&quot;</span>),</span>
-<span id="cb1-4"><a href="#cb1-4"></a>                      <span class="dt">UTMSource   =</span> <span class="kw">c</span>(<span class="st">&quot;test_s_1&quot;</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>                                      <span class="st">&quot;test_s_2&quot;</span>),</span>
-<span id="cb1-6"><a href="#cb1-6"></a>                      <span class="dt">Expenses    =</span> <span class="kw">c</span>(<span class="fl">88.12</span>,</span>
-<span id="cb1-7"><a href="#cb1-7"></a>                                      <span class="fl">92.11</span>),</span>
-<span id="cb1-8"><a href="#cb1-8"></a>                      <span class="dt">UTMMedium   =</span> <span class="kw">c</span>(<span class="st">&quot;cpc&quot;</span>,</span>
-<span id="cb1-9"><a href="#cb1-9"></a>                                      <span class="st">&quot;cpm&quot;</span>),</span>
-<span id="cb1-10"><a href="#cb1-10"></a>                      <span class="dt">UTMCampaign =</span> <span class="kw">c</span>(<span class="st">&quot;camp1&quot;</span>,</span>
-<span id="cb1-11"><a href="#cb1-11"></a>                                      <span class="st">&quot;camp2&quot;</span>),</span>
-<span id="cb1-12"><a href="#cb1-12"></a>                      <span class="dt">UTMTerm     =</span> <span class="kw">c</span>(<span class="st">&quot;term1&quot;</span>,</span>
-<span id="cb1-13"><a href="#cb1-13"></a>                                      <span class="st">&quot;term2&quot;</span>),</span>
-<span id="cb1-14"><a href="#cb1-14"></a>                      <span class="dt">UTMContent  =</span> <span class="kw">c</span>(<span class="st">&quot;cont1&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15"></a>                                      <span class="st">&quot;cont2&quot;</span>),</span>
-<span id="cb1-16"><a href="#cb1-16"></a>                      <span class="dt">Currency    =</span> <span class="kw">c</span>(<span class="st">&quot;RUB&quot;</span>, </span>
-<span id="cb1-17"><a href="#cb1-17"></a>                                      <span class="st">&quot;RUB&quot;</span>),</span>
-<span id="cb1-18"><a href="#cb1-18"></a>                      <span class="dt">Clicks      =</span> <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">15</span>))</span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="co"># отправка данных в Яндекс.Метрику</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="kw">rym_upload_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
-<span id="cb1-22"><a href="#cb1-22"></a>                   <span class="dt">data    =</span> expense,</span>
-<span id="cb1-23"><a href="#cb1-23"></a>                   <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
-<span id="cb1-24"><a href="#cb1-24"></a>                   <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span>
-<span id="cb1-25"><a href="#cb1-25"></a></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="co"># Удаление данных из Яндекс.Метрики</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a><span class="kw">rym_delete_uploaded_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
-<span id="cb1-28"><a href="#cb1-28"></a>                            <span class="dt">data    =</span> expense,</span>
-<span id="cb1-29"><a href="#cb1-29"></a>                            <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
-<span id="cb1-30"><a href="#cb1-30"></a>                            <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span>
-<span id="cb1-31"><a href="#cb1-31"></a></span>
-<span id="cb1-32"><a href="#cb1-32"></a><span class="co"># получение списка загрузок</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>loaded &lt;-<span class="st"> </span><span class="kw">rym_get_uploadings_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
-<span id="cb1-34"><a href="#cb1-34"></a>                                     <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
-<span id="cb1-35"><a href="#cb1-35"></a>                                     <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># данные для загрузки</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>expense &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">Date        =</span> <span class="kw">c</span>(<span class="st">&quot;2020-06-01&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>                                      <span class="st">&quot;2020-06-02&quot;</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>                      <span class="dt">UTMSource   =</span> <span class="kw">c</span>(<span class="st">&quot;test_s_1&quot;</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>                                      <span class="st">&quot;test_s_2&quot;</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>                      <span class="dt">Expenses    =</span> <span class="kw">c</span>(<span class="fl">88.12</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>                                      <span class="fl">92.11</span>),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>                      <span class="dt">UTMMedium   =</span> <span class="kw">c</span>(<span class="st">&quot;cpc&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>                                      <span class="st">&quot;cpm&quot;</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>                      <span class="dt">UTMCampaign =</span> <span class="kw">c</span>(<span class="st">&quot;camp1&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>                                      <span class="st">&quot;camp2&quot;</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>                      <span class="dt">UTMTerm     =</span> <span class="kw">c</span>(<span class="st">&quot;term1&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>                                      <span class="st">&quot;term2&quot;</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>                      <span class="dt">UTMContent  =</span> <span class="kw">c</span>(<span class="st">&quot;cont1&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>                                      <span class="st">&quot;cont2&quot;</span>),</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>                      <span class="dt">Currency    =</span> <span class="kw">c</span>(<span class="st">&quot;RUB&quot;</span>, </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>                                      <span class="st">&quot;RUB&quot;</span>),</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>                      <span class="dt">Clicks      =</span> <span class="kw">c</span>(<span class="dv">11</span>, <span class="dv">15</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a><span class="co"># отправка данных в Яндекс.Метрику</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a><span class="kw">rym_upload_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>                   <span class="dt">data    =</span> expense,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>                   <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>                   <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a><span class="co"># Удаление данных из Яндекс.Метрики</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a><span class="kw">rym_delete_uploaded_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>                            <span class="dt">data    =</span> expense,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>                            <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>                            <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a><span class="co"># получение списка загрузок</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true"></a>loaded &lt;-<span class="st"> </span><span class="kw">rym_get_uploadings_expense</span>(<span class="dt">counter =</span> <span class="dv">11111</span>, </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true"></a>                                     <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>, </span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true"></a>                                     <span class="dt">token.path =</span> <span class="st">&quot;D:/packlab/rym&quot;</span>)</span></code></pre></div>
 </div>
 <div id="как-найти-загруженные-данные-в-интерфейсе-яндекс.метрики" class="section level2">
 <h2>Как найти загруженные данные в интерфейсе Яндекс.Метрики</h2>

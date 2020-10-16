@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 # Введение в работу с пакетом `rym`
 
-[![Rdoc](http://www.rdocumentation.org/badges/version/rym)](http://www.rdocumentation.org/packages/rym)
+[![Rdoc](http://www.rdocumentation.org/badges/version/rym)](https://www.rdocumentation.org/packages/rym)
 
 ## Содержание
 

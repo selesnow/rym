@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>rym: Загрузка оффлайн конверсий в Яндекс.Метрику</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">rym: Загрузка оффлайн конверсий в Яндекс.Метрику</h1>
+
+
+
+<p>Начиная с версии <code>rym 1.0.0</code> у вас появилась загружать в Яндекс.Метрику данные об оффлайн конверсиях. Для этого в пакет были добавлены 5 функций.</p>
+<ul>
+<li><code>rym_enable_offline_conversion()</code> - Включить учёт оффлайн конверсий</li>
+<li><code>rym_disable_offline_conversion()</code> - Выключить учёт оффлайн конверсий</li>
+<li><code>rym_allow_offline_conversion()</code> - Возвращает дату и время, начиная с которого конверсии могут быть привязаны к визитам для указанного счетчика.</li>
+<li><code>rym_get_uploadings_offline_conversions()</code> - Возвращает список загрузок оффлайн конверсий</li>
+<li><code>rym_upload_offline_conversion()</code> - Загрузка оффлайн конверсий в Яндекс.Метрику</li>
+</ul>
+<div id="подготовка-яндекс.метрики-к-загрузке-оффлайн-конверсий" class="section level2">
+<h2>Подготовка Яндекс.Метрики к загрузке оффлайн конверсий</h2>
+<p>Для того, что бы вы могли начать загрузку оффлайн конверсий вам необходимо выполнить несколько действий.</p>
+<div id="создать-цель-в-яндекс-метрике" class="section level3">
+<h3>Создать цель в Яндекс Метрике</h3>
+<p>Первый шаг - создание цели, которую в дальнейшем мы будет подгружать, для этого используйте функцию <code>rym_add_goal()</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># создаём цель</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">rym_add_goal</span>(<span class="dv">123456789</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>             <span class="dt">name =</span> <span class="st">&#39;Заказ оплачен&#39;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>             <span class="dt">type =</span> <span class="st">&#39;action&#39;</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>             <span class="dt">conditions =</span> <span class="kw">list</span>(<span class="dt">type =</span> <span class="st">&#39;exact&#39;</span>, </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>                               <span class="dt">url  =</span> <span class="st">&#39;order_confirmed&#39;</span>),</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>             <span class="dt">login =</span> <span class="st">&#39;yandex_login&#39;</span>)</span></code></pre></div>
+<p>Можно использовать ранее созданную цель, если конверсия по этой цели совершается и на сайте, и вне его и вы хотите получать общую статистику.</p>
+</div>
+<div id="проверка-готовности-метрики-к-загрузке-конверсий" class="section level3">
+<h3>Проверка готовности Метрики к загрузке конверсий</h3>
+<p>Учтенный Метрикой визит может быть дополнен информацией о конверсии в течение 21 дня. Период учета конверсий увеличивается постепенно с момента включения опции.</p>
+<p>Включить опцию можно либо в интерфейсе Метрики (На странице Настройка → Загрузка данных), либо с помощью функции <code>rym_enable_offline_conversion()</code>.</p>
+<p>Чтобы проверить, можно ли загружать данные и за какой период, используйте функцию <code>rym_allow_offline_conversion()</code>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># оффлайн конверсии</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="kw">rym_enable_offline_conversion</span>(<span class="dv">123456789</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a>                              <span class="dt">login =</span> <span class="st">&#39;yandex_login&#39;</span>) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># проверка можно ли загружать данные и за какой период</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="kw">rym_allow_offline_conversion</span>(<span class="dv">123456789</span>, </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>                             <span class="dt">login =</span> <span class="st">&#39;yandex_login&#39;</span>)</span></code></pre></div>
+<p>При необходимости вы можете отключить опцию загрузки оффлайн конверсий функцией <code>rym_disable_offline_conversion()</code>.</p>
+</div>
+<div id="подготовка-данных-для-загрузки-в-яндекс.метрику" class="section level3">
+<h3>Подготовка данных для загрузки в Яндекс.Метрику</h3>
+<p>Перед загрузкой данных по оффлайн конверсиям в Яндекс.Метрику, вам необходимо привести их к нужному формату.</p>
+<p>Датафрейм должен содержать следующие столбцы:</p>
+<div id="обязательные-поля" class="section level4">
+<h4>Обязательные поля</h4>
+<ul>
+<li>UserId | ClientId | Yclid - Идентификатор посетителя сайта или рекламной кампании в Директе <em>(пример: 12345)</em>.</li>
+<li>Target - Идентификатор цели, заданный при создании цели <em>(пример: order_confirmed)</em>.</li>
+<li>DateTime - Время, в которое произошла конверсия в формате Unix Time Stamp. Указывайте время в часовом поясе UTC+0. <em>(пример: 1481718166)</em>.</li>
+</ul>
+</div>
+<div id="необязательные-поля" class="section level4">
+<h4>Необязательные поля</h4>
+<ul>
+<li>Price - Ценность цели <em>(пример: 1000)</em>.</li>
+<li>Currency - Трехбуквенный <a href="https://www.iso.org/iso-4217-currency-codes.html">код валюты по ISO 4217</a> <em>(пример: RUB)</em>.</li>
+</ul>
+<p>Пример файла можно скачать по <a href="https://download.cdn.yandex.net/from/yandex.ru/support/ru/metrica/files/offline-conversions.csv">этой ссылке</a>.</p>
+</div>
+</div>
+</div>
+<div id="загрузка-оффлайн-конверсий-в-яндекс-метрику" class="section level2">
+<h2>Загрузка оффлайн конверсий в Яндекс Метрику</h2>
+<p>Теперь вы можете использовать функцию <code>rym_upload_offline_conversion()</code> для загрузки оффлайн конверсий в Яндекс.Метрику.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">rym_upload_offline_conversion</span>(<span class="dv">12345</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>                              <span class="dt">data =</span> conv_data,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>                              <span class="dt">client.id.type =</span> <span class="st">&quot;CLIENT_ID&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>                              <span class="dt">login =</span> <span class="st">&#39;yandex_login&#39;</span>)</span></code></pre></div>
+<p>Обработка данных может занимать до 24 часов, после чего загруженные данные появятся в отчётах Яндекс.Метрики.</p>
+</div>
+<div id="получить-список-загрузок-оффлайн-конверсий" class="section level2">
+<h2>Получить список загрузок оффлайн конверсий</h2>
+<p>Посмотреть список загрузок, и их статусы можно с помощью функции <code>rym_get_uploadings_offline_conversions()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>uploads &lt;-<span class="st"> </span><span class="kw">rym_get_uploadings_offline_conversions</span>(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>              <span class="dt">counter =</span> <span class="dv">123456789</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>              <span class="dt">login   =</span> <span class="st">&#39;yandex_login&#39;</span>)</span></code></pre></div>
+</div>
+<div id="ссылки" class="section level2">
+<h2>Ссылки</h2>
+<ul>
+<li><a href="https://yandex.ru/dev/metrika/doc/api2/practice/conversion-docpage/">Отслеживание конверсий</a></li>
+<li><a href="https://yandex.ru/dev/metrika/doc/api2/practice/offline-conv-docpage/">Передача офлайн-конверсий</a></li>
+<li><a href="https://yandex.ru/dev/metrika/doc/api2/management/offline_conversion/upload-docpage/">Загрузка офлайн-конверсий</a></li>
+<li><a href="https://yandex.ru/support/metrica/data/offline-conversion_data.html">Оффлайн конверсии: Передача и обработка данных</a></li>
+</ul>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
