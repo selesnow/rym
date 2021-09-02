@@ -19,7 +19,7 @@ rym_get_direct_clients(counters, login = getOption("rym.user"),
 Data frame with Yandex Direct clients.
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/management/direct_clients/getclients-docpage/}{Reporting API docs}
+\href{https://tech.yandex.ru/metrika/doc/api2/management/direct_clients/getclients-docpage}{Reporting API docs}
 }
 \author{
 Alexey Seleznev

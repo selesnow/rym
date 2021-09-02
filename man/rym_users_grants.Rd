@@ -28,7 +28,7 @@ Data frame with list of yandex metrika counter users
 	\item{partner_data_access}{Logical, is partner access or not.}
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/management/grants/grants-docpage/}{Official docs}
+\href{https://tech.yandex.ru/metrika/doc/api2/management/grants/grants-docpage}{Official docs}
 
 Run \code{vignette("rym-management-api", package = "rym")} to see the corresponding vignette.
 }

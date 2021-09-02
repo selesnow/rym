@@ -30,7 +30,7 @@ End date in format YYYY-MM-DD
 Your yandex metrica counter
 }
   \item{dimensions}{
-List of dimensions fields, for example "ga:browser,ga:city", see \href{https://tech.yandex.ru/metrika/doc/api2/ga/ga/implemented/metrika_dim-docpage/}{dictionary of available dimension}
+List of dimensions fields, for example "ga:browser,ga:city", see \href{https://tech.yandex.ru/metrika/doc/api2/ga/ga/implemented/metrika_dim-docpage}{dictionary of available dimension}
 }
   \item{metrics}{
 List of metrics fields, for example "ga:users,ga:sessions", see \href{https://tech.yandex.ru/metrika/doc/api2/ga/ga/implemented/metrika_dim-docpage/}{dictionary of available metrics}
@@ -56,7 +56,7 @@ Limits:
 Data frame with fields.
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/}{Official compatible with the Google Analytics Core Reporting API (v3) docs}
+\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage}{Official compatible with the Google Analytics Core Reporting API (v3) docs}
 
 Run \code{vignette("rym-ga-api", package = "rym")} to see the corresponding vignette.
 }

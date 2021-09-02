@@ -1,66 +1,84 @@
-# rym - R пакет для работы с API Яндекс Метрики <a href='https:/selesnow/github.io/rym'><img src='https://raw.githubusercontent.com/selesnow/rym/master/inst/logo/rym.png' align="right" height="139" /></a>
-[![Rdoc](http://www.rdocumentation.org/badges/version/rym)](http://www.rdocumentation.org/packages/rym)
-[![rpackages.io rank](http://www.rpackages.io/badge/rym.svg)](http://www.rpackages.io/package/rym)
-[![](https://cranlogs.r-pkg.org/badges/rym)](https://cran.r-project.org/package=rym)
+# rym - R пакет для работы с API Яндекс.Метрики <a href='https://selesnow.github.io/ryandexdirect/'><img src='https://raw.githubusercontent.com/selesnow/rym/master/inst/logo/rym.png' align="right" height="139" /></a>
+===
 
-## ru
-Пакет rym предназначен для работы со следующими API интерфейсами Яндекс Метрики:
+CRAN
+====
 
-1. [API управления](https://tech.yandex.ru/metrika/doc/api2/management/intro-docpage/), с помощью которого можно получить список доступных вам счётчиков Яндекс Метрики, а так же списки насроенных целей, фильтров и сегмент, и получить список пользователей у которыз есть доступ к счётчику, с информацией об уровне доступа.
+[![Rdoc](http://www.rdocumentation.org/badges/version/rym)](https://www.rdocumentation.org/packages/rym)
 
-2. [API отчётов](https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage/), позволяет загружать статистические данные из Яндекс Метрики.
+Официальная документация к пакету rym
+=====================================
 
-3. [API совместимый с Core API Google Analytics v3](https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage/), с помощью которого вы можете запрашивать статистические данные используя такие же названия полей как и при работе с Core API Google Analytics.
+Официальную русскоязычную документацию можно найти по этой [ссылке](https://selesnow.github.io/rym/)
 
-4. [Logs API](https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage/) с помощью которого можно получить сырые, не сгруппированные данные о просмотрах или визитах на ваш сайт со всеми доступными параметрами.
+## Краткое описание
+================
 
-Пакет изначально разрабатывался согласно политике CRAN, поэтому установить его можно как с репозитория на GitHub, так и напрямую с CRAN.
+`rym` является R интерфейсом для работы с API Яндекс Метрики, его функции позволяют вам взаимодействовать со следующими API:
 
-Установка с CRAN: `install.packages("rym")`
-Установка с GitHub: `devtools::install_github("selesnow/rym")`
+1.  [API Управления](https://tech.yandex.ru/metrika/doc/api2/management/intro-docpage) - позволяет получить таблицы с такими объектами как достуные счётчики Яндекс.Метрики, список настроенных целей, фильтров и сегментов, а так же список пользователей у которых есть доступ к счётчику.
+2.  [API Отчётов](https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage) - позволяет получать информацию о статистике посещений сайта и другие данные, не используя интерфейс Яндекс.Метрики.
+3.  [API совместимый с Core API Google Analytics (v3)](https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage) - позволяет запрашивать статистические данные используя при этом название полей такие же как и при работе с Core Reporting API v3.
+4.  [Logs API](https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage) - позволяет получить сырые, несгруппированные данные о посещении вашего сайта из Яндекс.Метрики.
 
-### Пример кода для работы с пакетом rym
-```r
-install.packages('rym')
-library(rym)
+## Установка
+---------
 
-# переходим в рабочую директорию
-setwd("C:\\webinars\\cybermarketing-2018")
+Установить `rym` можно как с CRAN так и с GitHub
 
-# авторизаци под двумя разными аккаунтами
+CRAN: `install.packages('rym')`
+
+GitHub: `devtools::install_github("selesnow/rym")`
+
+## Виньетки
+========
+
+Помимо официальной документации у пакета есть 5 виньеток, вводная, и отдельно виньетка под каждый API, открыть их можно с помощью следующих команд:
+
+-   Введение в пакет `rym`: `vignette('intro-to-rym', package = 'rym')`
+-   API Управления: `vignette('rym-management-api', package = 'rym')`
+-   API Отчётов: `vignette('rym-reporting-api', package = 'rym')`
+-   API совместимый с Core API Google Analytics v3: `vignette('rym-ga-api', package = 'rym')`
+-   Logs API: `vignette('rym-logs-api', package = 'rym')`
+
+Пример кода
+-----------
+
+``` r
+# auth
 rym_auth(login = "vipman.netpeak", token.path = "metrica_token")
 rym_auth(login = "selesnow", token.path = "metrica_token")
 
 
-# API Управления
-# получить список счЄтчиков
+# ManagementAPI
+# get counters list
 selesnow.counters <- rym_get_counters(login      = "selesnow",
                                       token.path = "metrica_token")
 
 vipman.counters   <- rym_get_counters(login      = "vipman.netpeak",
                                       token.path = "metrica_token")
 
-# получить список целей
+# get goals list
 my_goals <- rym_get_goals(counter = 10595804,
                           login      = "vipman.netpeak",
                           token.path = "metrica_token")
 
-# получить список фильров
+# пget filter list
 my_filter <- rym_get_filters(counter = 10595804,
                              login      = "vipman.netpeak",
                              token.path = "metrica_token")
 
-# получить список сегментов
+# get segment list
 my_segments <- rym_get_segments(counter = 10595804,
                                 login      = "vipman.netpeak",
                                 token.path = "metrica_token")
 
-# получить список пользователей счЄтчика
+# get counter list
 users <- rym_users_grants(counter = 10595804,
                           login      = "vipman.netpeak",
                           token.path = "metrica_token")
 
-# API отчЄтов
+# Reporting API
 reporting.api.stat <- rym_get_data(counters   = "23660530,10595804",
                                    date.from  = "2018-08-01",
                                    date.to    = "yesterday",
@@ -82,7 +100,7 @@ logs.api.stat      <- rym_get_logs(counter    = 23660530,
                                    login      = "vipman.netpeak",
                                    token.path = "metrica_token")
 
-# API —овместимый с Core API Google Analytics v3
+# API compatible with Core API Google Analytics v3
 ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
                                  dimensions = "ga:date,ga:source",
                                  metrics    = "ga:sessions,ga:users",
@@ -93,12 +111,8 @@ ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
                                  token.path = "metrica_token")
 ```
 
-### Ссылки
-1. [Официальная документация](https://selesnow.github.io/rym) к пакету `rym`.
-2. [Вебинар](https://www.youtube.com/watch?v=sCp2D6068es) посвящённый работе с пакетом `rym`.
-3. [Страница](https://CRAN.R-project.org/package=rym) пакета на CRAN.
-
 ## Статьи:
+
 - [Как работать с API Яндекс.Метрики с помощью языка R](https://netpeak.net/ru/blog/kak-rabotat-s-api-yandeks-metriki-s-pomoshch-yu-yazyka-r/), *Алексей Селезнёв*
 - [Как использовать Rscript в качестве источника данных в Microsoft Power BI на примере Яндекс.Метрики](https://www.mediaguru.ru/blog/kak-ispolzovat-rscript-v-kachestve-istochnika-dannyh-v-microsoft-power-bi-na-primere-yandeks-metriki/), *Павел Мрыкин*
 - [Построение поведенческих воронок на языке R, на основе данных полученных из Logs API Яндекс.Метрики](https://habr.com/ru/post/462279/), *Алексей Селезнёв*
@@ -106,11 +120,8 @@ ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
 - [Насколько безопасно использовать R пакеты для работы с API рекламных систем](https://habr.com/ru/post/430888/), *Алексей Селезнёв*
 - [Как массово удалить в интернет-магазине страницы товаров, которые не приносят трафик](https://netpeak.net/ru/blog/kak-massovo-udalit-v-internet-magazine-stranitsy-tovarov-kotoryye-ne-prinosyat-trafik/), *Богдан Неряхин*
 
-### Автор пакета
-Алексей Селезнёв, Head of analytics dept. at [Netpeak](https://netpeak.net)
-<Br>telegram channel: [R4marketing](https://t.me/R4marketing)
-<Br>email: selesnow@gmail.com
-<Br>skype: selesnow
-<Br>facebook: [facebook.com/selesnow](https://facebook.com/selesnow)
-<Br>linkedin: [linkedin.com/in/selesnow](https://linkedin.com/in/selesnow)
-<Br>blog: [alexeyseleznev.wordpress.com](https://alexeyseleznev.wordpress.com/)
+## Видео уроки:
+
+-   [Как автоматизировать работу с данными Яндекс.Метрики. С помощью языка R](https://www.youtube.com/watch?v=sCp2D6068es)
+
+Автор: Алексей Селезнёв (Head of Analytics Dept. at Netpeak)
