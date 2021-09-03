@@ -89,7 +89,7 @@ knitr::opts_chunk$set(
 * *id* - Идентификатор сегмента.
 * *counter_id* - Идентификатор счетчика.
 * *name* - Название сегмента.
-* *expression* - Выражение, которое соответствует [значению параметра filters](https://tech.yandex.ru/metrika/doc/api2/api_v1/segmentation-docpage).
+* *expression* - Выражение, которое соответствует [значению параметра filters](https://yandex.ru/dev/metrika/doc/api2/api_v1/segmentation-docpage).
 * *is_retargeting* - Является ли данный сегмент ретаргетинговым
 * *segment_source* - Источник сегмента. Указывает на способ его создания. Принимает значение api — используются сегменты, созданные с помощью API.
 

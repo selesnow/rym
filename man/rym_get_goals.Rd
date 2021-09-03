@@ -21,7 +21,7 @@ rym_get_goals(counter, login = getOption("rym.user"),
 Data frame with list of yandex metrica counters
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/management/goals/goals-docpage}{Official docs of 'Yandex Metrica Management API'}
+\href{https://yandex.ru/dev/metrika/doc/api2/management/goals/goals-docpage}{Official docs of 'Yandex Metrica Management API'}
 
 \href{https://selesnow.github.io/rym/}{Docs on rym website}
 

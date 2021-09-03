@@ -22,13 +22,13 @@ Maintainer: \packageMaintainer{rym}
 \references{
 \href{https://selesnow.github.io/rym/}{Officialrym documents}
 
-\href{https://tech.yandex.ru/metrika/doc/api2/management/intro-docpage}{Management API Documents}
+\href{https://yandex.ru/dev/metrika/doc/api2/management/intro-docpage}{Management API Documents}
 
-\href{https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage}{Reporting API Documents}
+\href{https://yandex.ru/dev/metrika/doc/api2/api_v1/intro-docpage}{Reporting API Documents}
 
-\href{https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage}{API Compatible with Google Analytics Core API v3}
+\href{https://yandex.ru/dev/metrika/doc/api2/ga/intro-docpage}{API Compatible with Google Analytics Core API v3}
 
-\href{https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage}{Logs API Documentations}
+\href{https://yandex.ru/dev/metrika/doc/api2/logs/intro-docpage}{Logs API Documentations}
 
 Or read vignettes:
 

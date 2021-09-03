@@ -41,11 +41,11 @@ Log source, one of "hits" or "visits"
 Data frame with values and fields
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/logs/fields/visits-docpage}{Visits fields}
+\href{https://yandex.ru/dev/metrika/doc/api2/logs/fields/visits-docpage}{Visits fields}
 	
-\href{https://tech.yandex.ru/metrika/doc/api2/logs/fields/hits-docpage}{Hits fields}
+\href{https://yandex.ru/dev/metrika/doc/api2/logs/fields/hits-docpage}{Hits fields}
 	
-\href{https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage}{Logs API docs}
+\href{https://yandex.ru/dev/metrika/doc/api2/logs/intro-docpage}{Logs API docs}
 
 \href{https://selesnow.github.io/rym/}{Docs on rym website}
 

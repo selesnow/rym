@@ -32,7 +32,7 @@ Data frame with list of yandex metrika counter filters
 	\item{start_ip}{The last IP address of the range.}
 }
 \references{
-\href{https://tech.yandex.ru/metrika/doc/api2/management/filters/filters-docpage/}{Official docs}
+\href{https://yandex.ru/dev/metrika/doc/api2/management/filters/filters-docpage}{Official docs}
 }
 \author{
 Alexey Seleznev

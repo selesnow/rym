@@ -16,10 +16,10 @@ CRAN
 
 `rym` является R интерфейсом для работы с API Яндекс Метрики, его функции позволяют вам взаимодействовать со следующими API:
 
-1.  [API Управления](https://tech.yandex.ru/metrika/doc/api2/management/intro-docpage) - позволяет получить таблицы с такими объектами как достуные счётчики Яндекс.Метрики, список настроенных целей, фильтров и сегментов, а так же список пользователей у которых есть доступ к счётчику.
-2.  [API Отчётов](https://tech.yandex.ru/metrika/doc/api2/api_v1/intro-docpage) - позволяет получать информацию о статистике посещений сайта и другие данные, не используя интерфейс Яндекс.Метрики.
-3.  [API совместимый с Core API Google Analytics (v3)](https://tech.yandex.ru/metrika/doc/api2/ga/intro-docpage) - позволяет запрашивать статистические данные используя при этом название полей такие же как и при работе с Core Reporting API v3.
-4.  [Logs API](https://tech.yandex.ru/metrika/doc/api2/logs/intro-docpage) - позволяет получить сырые, несгруппированные данные о посещении вашего сайта из Яндекс.Метрики.
+1.  [API Управления](https://yandex.ru/dev/metrika/doc/api2/management/intro-docpage) - позволяет получить таблицы с такими объектами как достуные счётчики Яндекс.Метрики, список настроенных целей, фильтров и сегментов, а так же список пользователей у которых есть доступ к счётчику.
+2.  [API Отчётов](https://yandex.ru/dev/metrika/doc/api2/api_v1/intro-docpage) - позволяет получать информацию о статистике посещений сайта и другие данные, не используя интерфейс Яндекс.Метрики.
+3.  [API совместимый с Core API Google Analytics (v3)](https://yandex.ru/dev/metrika/doc/api2/ga/intro-docpage) - позволяет запрашивать статистические данные используя при этом название полей такие же как и при работе с Core Reporting API v3.
+4.  [Logs API](https://yandex.ru/dev/metrika/doc/api2/logs/intro-docpage) - позволяет получить сырые, несгруппированные данные о посещении вашего сайта из Яндекс.Метрики.
 
 ## Установка
 ---------
@@ -44,7 +44,7 @@ GitHub: `devtools::install_github("selesnow/rym")`
 Пример кода
 -----------
 
-``` r
+```r
 # auth
 rym_auth(login = "vipman.netpeak", token.path = "metrica_token")
 rym_auth(login = "selesnow", token.path = "metrica_token")
@@ -119,6 +119,7 @@ ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
 - [Обзор R пакетов для интернет маркетинга, часть 1](https://habr.com/ru/post/425425/), *Алексей Селезнёв*
 - [Насколько безопасно использовать R пакеты для работы с API рекламных систем](https://habr.com/ru/post/430888/), *Алексей Селезнёв*
 - [Как массово удалить в интернет-магазине страницы товаров, которые не приносят трафик](https://netpeak.net/ru/blog/kak-massovo-udalit-v-internet-magazine-stranitsy-tovarov-kotoryye-ne-prinosyat-trafik/), *Богдан Неряхин*
+- [Как загружать данные о расходах, офлайн-конверсиях и звонках в Яндекс Метрику](https://alexeyseleznev.wordpress.com/2021/09/01/%d0%ba%d0%b0%d0%ba-%d0%b7%d0%b0%d0%b3%d1%80%d1%83%d0%b6%d0%b0%d1%82%d1%8c-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d0%b5-%d0%be-%d1%80%d0%b0%d1%81%d1%85%d0%be%d0%b4%d0%b0%d1%85-%d0%be%d1%84%d0%bb%d0%b0%d0%b9/), *Алексей Селезнёв*
 
 ## Видео уроки:
 

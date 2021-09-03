@@ -2,14 +2,15 @@ Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
 Version: 1.0.5
-Date: 2021-09-02
+Date: 2021-09-03
 Authors@R: 
     c(person(given  = "Alexey",
              family = "Seleznev",
              role   = c("aut", "cre"),
              email  = "selesnow@gmail.com",
-             comment = c(ORCID = "0000-0003-0410-7385")))
-Author: Alexey Seleznev [aut, cre] (<https://orcid.org/0000-0003-0410-7385>)
+             comment = c(ORCID = "0000-0003-0410-7385")),
+      person(given = "Netpeak",
+             role = c("cph")))
 Maintainer: Alexey Seleznev <selesnow@gmail.com>
 Description: Allows work with 'Management API' for load counters, segments, filters,
 	user permissions and goals list from Yandex Metrica, 'Reporting API' allows you to get 
@@ -18,7 +19,7 @@ Description: Allows work with 'Management API' for load counters, segments, filt
 	'Compatible with Google Analytics Core Reporting API v3' allows 
 	receive information about site traffic and other data using field names 
 	from Google Analytics Core API.	For more information see official 
-	documents <https://tech.yandex.ru/metrika/doc/api2/concept/about-docpage>.
+	documents <https://yandex.ru/dev/metrika/doc/api2/concept/about-docpage>.
 Depends: R (>= 3.5.0)
 BugReports: https://github.com/selesnow/rym/issues
 Suggests: knitr, rmarkdown
