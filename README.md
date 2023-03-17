@@ -113,7 +113,7 @@ ga.api.stat        <- rym_get_ga(counter    = "ga:22584910",
 
 ## Статьи:
 
-- [Как работать с API Яндекс.Метрики с помощью языка R](https://netpeak.net/ru/blog/kak-rabotat-s-api-yandeks-metriki-s-pomoshch-yu-yazyka-r/), *Алексей Селезнёв*
+- [Как работать с API Яндекс.Метрики с помощью языка R](https://alexeyseleznev.wordpress.com/2018/10/08/%D0%BA%D0%B0%D0%BA-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0%D1%82%D1%8C-%D1%81-api-%D1%8F%D0%BD%D0%B4%D0%B5%D0%BA%D1%81-%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B8-%D1%81-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89/), *Алексей Селезнёв*
 - [Как использовать Rscript в качестве источника данных в Microsoft Power BI на примере Яндекс.Метрики](https://www.mediaguru.ru/blog/kak-ispolzovat-rscript-v-kachestve-istochnika-dannyh-v-microsoft-power-bi-na-primere-yandeks-metriki/), *Павел Мрыкин*
 - [Построение поведенческих воронок на языке R, на основе данных полученных из Logs API Яндекс.Метрики](https://habr.com/ru/post/462279/), *Алексей Селезнёв*
 - [Обзор R пакетов для интернет маркетинга, часть 1](https://habr.com/ru/post/425425/), *Алексей Селезнёв*
