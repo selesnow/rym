@@ -1,0 +1,6 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^_config\.yml$
+^getToken$
+^index\.md$
+^temp$

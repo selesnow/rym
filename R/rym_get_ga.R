@@ -22,14 +22,6 @@ rym_get_ga <-
 
     token <- rym_auth(login = login, token.path = token.path)$access_token
 
-    # check opts StringAsFactor
-    if (getOption("stringsAsFactors") == TRUE) {
-      string_as_factor <- "change"
-      options(stringsAsFactors = F)
-    } else {
-      string_as_factor <- "no change"
-    }
-
     # create df
     result <- data.frame(stringsAsFactors = F)
 
@@ -98,11 +90,6 @@ rym_get_ga <-
       if (rawData$columnHeaders[[tape_i]]$columnType == "METRIC") {
         result[, tape_i] <- as.numeric(result[, tape_i])
       }
-    }
-
-    # opts
-    if (string_as_factor == "change") {
-      options(stringsAsFactors = T)
     }
 
     # message
