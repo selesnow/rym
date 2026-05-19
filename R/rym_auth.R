@@ -1,19 +1,19 @@
-rym_auth <- function(Login = getOption("rym.user"), 
-                     NewUser = FALSE, 
-                     TokenPath  = getOption("rym.token_path")) {
+rym_auth <- function(login = getOption("rym.user"), 
+                     new.user = FALSE, 
+                     token.path  = getOption("rym.token_path")) {
   
   # check dir
-  if (!dir.exists(TokenPath)) dir.create(TokenPath)
+  if (!dir.exists(token.path)) dir.create(token.path)
   
   # Set login if not provided
-  Login <- if (!is.null(Login)) Login else getOption("rym.user")
+  login <- if (!is.null(login)) login else getOption("rym.user")
   
   # Normalize path
-  TokenPath <- gsub("\\\\", "/", TokenPath)
-  token_file <- file.path(TokenPath, paste0(Login, ".rymAuth.RData"))
+  token.path <- gsub("\\\\", "/", token.path)
+  token_file <- file.path(token.path, paste0(login, ".rymAuth.RData"))
   
   # Load token if it exists
-  if (!NewUser && file.exists(token_file)) {
+  if (!new.user && file.exists(token_file)) {
     message("Load token from ", token_file)
     load(token_file)
     
@@ -57,15 +57,15 @@ rym_auth <- function(Login = getOption("rym.user"),
     More details:
     - Release notes: https://github.com/selesnow/ryandexdirect/releases/tag/3.0.0
     - R modes: https://www.r-bloggers.com/batch-processing-vs-interactive-sessions/",
-      Login, TokenPath
+      login, token.path
     ))
   }
   
   # Start user authorization
   browseURL(paste0(
     "https://oauth.yandex.ru/authorize?response_type=code&client_id=5a87e45d5562421bb29bb9abd17321b3&redirect_uri=https://selesnow.github.io/rym/getToken/get_code.html&force_confirm=",
-    as.integer(NewUser),
-    ifelse(is.null(Login), "", paste0("&login_hint=", Login))
+    as.integer(new.user),
+    ifelse(is.null(login), "", paste0("&login_hint=", login))
   ))
   
   # Enter authorization code
@@ -93,7 +93,7 @@ rym_auth <- function(Login = getOption("rym.user"),
   token$expire_at <- Sys.time() + token$expires_in
   class(token) <- "RymToken"
   
-  save_path <- file.path(TokenPath, paste0(Login, ".rymAuth.RData"))
+  save_path <- file.path(token.path, paste0(login, ".rymAuth.RData"))
   message("Do you want to save the API credential in a local file (", save_path, ") for use between R sessions?")
   ans <- tolower(readline("y / n (recommendation - y): "))
   
