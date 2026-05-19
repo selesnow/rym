@@ -1,7 +1,7 @@
 Package: rym
 Type: Package
 Title: R Interface to Yandex Metrica API
-Version: 1.0.6
+Version: 1.1.0
 Authors@R: 
     c(person(given  = "Alexey",
              family = "Seleznev",
